@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Satoshi Variable';
+  font-style: normal;
+  font-weight: 460 660;
+  font-display: swap;
+  src: url('./fonts/fonts/satoshi-variable/satoshi-variable.woff2') format('woff2');
+}

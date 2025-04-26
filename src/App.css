@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+
+@theme{
+    --color-secondaryL:#034078;
+    --color-primary:#0a1128;
+    --color-secondaryD: #000080
+    ;
+
+  
+    --color-cardborder:#E5E7EB;
+    --color-bg:#021526;
+  }
+
+  /* App.css */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  display: inline-block;
+  width: 60vw;
+  white-space: nowrap;
+  animation: marquee 13s linear infinite;
+}
+
+
+.glow {
+  white-space: nowrap;
+  transition: text-shadow 0.3s ease;
+}
+
+.glow:hover {
+  text-shadow: 0 0 10px #0022ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+}
+
+
+/* App.css */
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff, 0 0 45px #00f0ff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* app.css */
+
+/* Typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-text {
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #c084fc;
+  font-family: monospace;
+  font-size: 2rem;
+  animation: typing 3s steps(30, end) forwards, blink 0.75s step-end infinite;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Glowing card on hover */
+.card-glow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff, 0 0 45px #00f0ff;
+}
+
+
+.streak-box {
+  background: linear-gradient(to right, #6366f1, #8b5cf6, #ec4899);
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.streak-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.streak-count {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* Add this to your stylesheet */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
