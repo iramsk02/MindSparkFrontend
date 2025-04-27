@@ -36,7 +36,7 @@ export default function LessonPage() {
   }, [language]);
 
   useEffect(() => {
-    socketRef.current = new WebSocket(`wss://mindspark-backend.onrender.com`);
+    socketRef.current = new WebSocket(`wss://mindspark-backend.onrender.com:8089`);
     // socketRef.current = new WebSocket(`https://chat-app-frontend-psi-six.vercel.app`);
 
     // socketRef.current = new WebSocket(`wss://micro-learn-backend.onrender.com:8089?token=${token}`);
