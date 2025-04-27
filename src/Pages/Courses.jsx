@@ -88,7 +88,7 @@ export default function Courses() {
           <p className="text-sm sm:text-base text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt debitis quidem nesciunt voluptas ipsam!</p>
         </div>
         <div className="md:w-1/2">
-          <img src="src/assets/Courseimg.png" alt="Course" className="w-full h-auto rounded-2xl shadow-lg" />
+          <img src="assets/Courseimg.png" alt="Course" className="w-full h-auto rounded-2xl shadow-lg" />
         </div>
       </section>
 
