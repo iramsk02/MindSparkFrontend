@@ -32,8 +32,8 @@ export default function InstructorProfile() {
 
 async function getInstructorsCourses() {
     try {
-        // const response = await fetch(`https://micro-learn-backend.onrender.com/api/courses/educatorCourses/${userId}`, {
-        const response = await fetch(`http://localhost:5000/api/courses/educatorCourses/${userId}`, {
+        const response = await fetch(`https://mindspark-backend.onrender.com/api/courses/educatorCourses/${userId}`, {
+        // const response = await fetch(`http://localhost:5000/api/courses/educatorCourses/${userId}`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -57,7 +57,8 @@ async function getInstructorsCourses() {
     
     const fetchInstructorProfile = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/getProfile/${userId}`, {
+        const res = await fetch(`https://mindspark-backend.onrender.com/api/users/getProfile/${userId}`, {
+        // const res = await fetch(`http://localhost:5000/api/users/getProfile/${userId}`, {
           headers: {
             Authorization: token,
           },
@@ -83,7 +84,8 @@ async function getInstructorsCourses() {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/updateProfile/${userId}`, {
+      const res = await fetch(`https://mindspark-backend.onrender.com/api/users/updateProfile/${userId}`, {
+      // const res = await fetch(`http://localhost:5000/api/users/updateProfile/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -104,8 +106,8 @@ async function getInstructorsCourses() {
 
   const logoutUser = async () => {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
-      // await fetch("https://micro-learn-backend.onrender.com/api/auth/logout", {
+      // await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch("https://mindspark-backend.onrender.com/api/auth/logout", {
         method: "POST",
       });
 

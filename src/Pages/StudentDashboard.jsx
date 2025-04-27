@@ -45,7 +45,8 @@ export default function StudentDashboard() {
         
         const fetchInstructorProfile = async () => {
           try {
-            const res = await fetch(`http://localhost:5000/api/users/getProfile/${user}`, {
+            const res = await fetch(`https://mindspark-backend.onrender.com/api/users/getProfile/${user}`, {
+            // const res = await fetch(`http://localhost:5000/api/users/getProfile/${user}`, {
               headers: {
                 Authorization: token,
               },
@@ -70,8 +71,8 @@ export default function StudentDashboard() {
 
   async function getAllCourses() {
     try {
-      // const response = await fetch('https://micro-learn-backend.onrender.com/api/courses/Allcourses', {
-      const response = await fetch('http://localhost:5000/api/courses/Allcourses', {
+      const response = await fetch('https://mindspark-backend.onrender.com/api/courses/Allcourses', {
+      // const response = await fetch('http://localhost:5000/api/courses/Allcourses', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -81,6 +82,7 @@ export default function StudentDashboard() {
       });
 
       const data = await response.json();
+      console.log(data)
       
       if (response.ok) {
         setCourses(data);
@@ -154,15 +156,15 @@ export default function StudentDashboard() {
           <div className="flex justify-between text-sm text-gray-700">
             <div>
               <p className="font-medium">Progress</p>
-              <p>{student.xp/1000}%</p>
+              {/* <p>{student.xp/1000 || 0}%</p> */}
             </div>
             <div>
               <p className="font-medium">Streak</p>
-              <p>{student.streak.current}</p>
+              {/* <p>{student.streak.current|| 1}</p> */}
             </div>
             <div>
               <p className="font-medium">XP</p>
-              <p>{student.xp}</p>
+              {/* <p>{student.xp || 0}</p> */}
             </div>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function ProfileSetup() {
         console.log(formData)
 
         try {
-            const res = await fetch("http://localhost:5000/api/users/createProfile", {
+            const res = await fetch("https://mindspark-backend.onrender.com/api/users/createProfile", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

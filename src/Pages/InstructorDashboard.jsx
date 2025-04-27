@@ -33,8 +33,8 @@ export default function InstructorDashboard() {
 
     async function getInstructorsCourses() {
         try {
-            const response = await fetch(`http://localhost:5000/api/courses/educatorCourses/${userId}`, {
-            // const response = await fetch(`https://micro-learn-backend.onrender.com/api/courses/educatorCourses/${userId}`, {
+            // const response = await fetch(`http://localhost:5000/api/courses/educatorCourses/${userId}`, {
+            const response = await fetch(`https://mindspark-backend.onrender.com/api/courses/educatorCourses/${userId}`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -55,8 +55,8 @@ export default function InstructorDashboard() {
 
     async function getAllCourses() {
         try {
-            const response = await fetch('http://localhost:5000/api/courses/Allcourses', {
-            // const response = await fetch('https://micro-learn-backend.onrender.com/api/courses/Allcourses', {
+            // const response = await fetch('http://localhost:5000/api/courses/Allcourses', {
+            const response = await fetch('https://mindspark-backend.onrender.com/api/courses/Allcourses', {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',

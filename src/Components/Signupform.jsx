@@ -27,7 +27,8 @@ export default function SignUpForm() {
     try {
 
       // const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
-      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+      const response = await fetch(`https://mindspark-backend.onrender.com/api/auth/register`, {
+      // const response = await fetch(`http://localhost:5000/api/auth/register`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'

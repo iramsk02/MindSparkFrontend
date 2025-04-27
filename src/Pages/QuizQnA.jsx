@@ -27,8 +27,8 @@ export default function QuizQnA() {
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/quiz/Allquiz", {
-                // const response = await fetch("https://micro-learn-backend.onrender.com/api/quiz/Allquiz", {
+                // const response = await fetch("http://localhost:5000/api/quiz/Allquiz", {
+                const response = await fetch("https://mindspark-backend.onrender.com/api/quiz/Allquiz", {
                     method: "GET",
                     headers: {
                         Authorization: token,
@@ -76,7 +76,8 @@ export default function QuizQnA() {
         setxp(xp);
 
         try {
-            await fetch("http://localhost:5000/api/progress/quiz/complete", {
+            // await fetch("http://localhost:5000/api/progress/quiz/complete", {
+            await fetch("https://mindspark-backend.onrender.com/api/progress/quiz/complete", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -18,6 +18,7 @@ export default function StudentProfile() {
   const userId = localStorage.getItem("user");
   const avatar = localStorage.getItem("avatar");
   const role = localStorage.getItem("role");
+  console.log(userId)
 
   const navigate = useNavigate();
 
@@ -26,12 +27,13 @@ export default function StudentProfile() {
 
     const fetchStudentProfile = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/users/getProfile/${userId}`, {
+        const res = await fetch(`https://mindspark-backend.onrender.com/api/users/getProfile/${userId}`, {
         // const res = await fetch(`https://micro-learn-backend.onrender.com/api/users/getProfile/${userId}`, {
           headers: { Authorization: token },
         });
 
         const data = await res.json();
+        console.log(data)
         if (isMounted) {
           setStudent(data);
           setFormData({ name: data.name || "", avatar: data.avatar || "", bio: data.bio || "" });
@@ -56,8 +58,8 @@ export default function StudentProfile() {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/users/updateProfile/${userId}`, {
-      // const res = await fetch(`https://micro-learn-backend.onrender.com/api/users/updateProfile/${userId}`, {
+      // const res = await fetch(`http://localhost:5000/api/users/updateProfile/${userId}`, {
+      const res = await fetch(`https://mindspark-backend.onrender.com/api/users/updateProfile/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

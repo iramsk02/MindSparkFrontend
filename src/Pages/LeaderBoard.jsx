@@ -19,8 +19,8 @@ export default function LeaderBoard() {
     const fetchLeaders = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:5000/api/progress/leaderboard", {
-        // const res = await fetch("https://micro-learn-backend.onrender.com/api/progress/leaderboard", {
+        // const res = await fetch("http://localhost:5000/api/progress/leaderboard", {
+        const res = await fetch("https://mindspark-backend.onrender.com/api/progress/leaderboard", {
           headers: { Authorization: token },
         });
 

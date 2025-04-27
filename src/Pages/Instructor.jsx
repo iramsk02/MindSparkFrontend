@@ -28,8 +28,8 @@ export default function Instructor() {
 
   async function getEducators() {
     try {
-      // const res = await fetch(`https://micro-learn-backend.onrender.com/api/users/geteducators`, {
-      const res = await fetch(`http://localhost:5000/api/users/geteducators`, {
+      const res = await fetch(`https://mindspark-backend.onrender.com/api/users/geteducators`, {
+      // const res = await fetch(`http://localhost:5000/api/users/geteducators`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -24,8 +24,8 @@ export default function QuizPage() {
 
   async function fetchQuiz() {
     try {
-      const response = await fetch("http://localhost:5000/api/quiz/Allquiz", {
-      // const response = await fetch("https://micro-learn-backend.onrender.com/api/quiz/Allquiz", {
+      // const response = await fetch("http://localhost:5000/api/quiz/Allquiz", {
+      const response = await fetch("https://mindspark-backend.onrender.com/api/quiz/Allquiz", {
         method: "GET",
         headers: {
           Accept: "application/json",

@@ -21,8 +21,8 @@ export default function Courses() {
 
   async function getAllCourses() {
     try {
-      const response = await fetch(`http://localhost:5000/api/courses/Allcourses`);
-      // const response = await fetch(`https://micro-learn-backend.onrender.com/api/courses/Allcourses`);
+      // const response = await fetch(`http://localhost:5000/api/courses/Allcourses`);
+      const response = await fetch(`https://mindspark-backend.onrender.com/api/courses/Allcourses`);
       const data = await response.json();
       if (response.ok) {
         setCourses(data);

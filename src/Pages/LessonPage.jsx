@@ -35,7 +35,9 @@ export default function LessonPage() {
   }, [language]);
 
   useEffect(() => {
-    socketRef.current = new WebSocket(`ws://localhost:8089?token=${token}`);
+    // socketRef.current = new WebSocket(`wss://mindspark-backend.onrender.com:8089?token=${token}`);
+    socketRef.current = new WebSocket(`wss://mindspark-backend.onrender.com:8089?token=${token}`);
+
     // socketRef.current = new WebSocket(`wss://micro-learn-backend.onrender.com:8089?token=${token}`);
     socketRef.current.onopen = async () => {
       await socketRef.current.send(
@@ -76,7 +78,7 @@ export default function LessonPage() {
   const sendQuestion = async (query) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/gemini/ask", {
+      const response = await fetch("https://mindspark-backend.onrender.com/api/gemini/ask", {
       // const response = await fetch("https://micro-learn-backend.onrender.com/api/gemini/ask", {
         method: "POST",
         headers: {
@@ -107,8 +109,8 @@ export default function LessonPage() {
 
   const handleVideoComplete = async () => {
     try {
-      await fetch("http://localhost:5000/api/progress/course/complete", {
-      // await fetch("https://micro-learn-backend.onrender.com/api/progress/course/complete", {
+      // await fetch("http://localhost:5000/api/progress/course/complete", {
+      await fetch("https://mindspark-backend.onrender.com/api/progress/course/complete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
