@@ -80,7 +80,7 @@ export default function StudentProfile() {
 
   const logoutUser = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/logout", {
+      const res = await fetch("https://mindspark-backend.onrender.com/api/auth/logout", {
       // const res = await fetch("https://micro-learn-backend.onrender.com/api/auth/logout", {
         method: "POST",
       });
