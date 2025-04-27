@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react"; // lucide-react for icons
 import Home from "../icons/Home";
 // import VoiceAssistant from "../Components/VoiceAssistant";
 import speak from "../utils/Speak";
+import toast from "react-hot-toast";
 // import SpeechSynthesisUtterance 
 
 
@@ -87,11 +88,11 @@ export default function StudentDashboard() {
       if (response.ok) {
         setCourses(data);
       } else {
-        alert(`Failed to fetch courses: ${data.message}`);
+        toast.error(`Failed to fetch courses: ${data.message}`);
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred while retrieving courses.');
+      toast.error('An error occurred while retrieving courses.');
     } finally {
       setLoading(false);
      

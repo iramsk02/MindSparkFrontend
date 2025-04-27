@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function ProfileSetup() {
@@ -55,7 +56,7 @@ export default function ProfileSetup() {
             localStorage.setItem("avatar",data.profile.avatar)
             localStorage.setItem("bio",data.profile.bio)
 
-            alert("Profile saved!");
+            toast.success("Profile saved!");
             
           if (role =="student") {
             navigate("/StudentDashboard") 
@@ -66,7 +67,7 @@ export default function ProfileSetup() {
 
         } catch (error) {
             console.error("Error setting up profile:", error);
-            alert("Something went wrong.");
+            toast.error("Something went wrong.");
         }
     };
 

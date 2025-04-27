@@ -29,7 +29,7 @@ export default function LeaderBoard() {
         setLeaders(data.leaderboard);
         settopPerformer(data.leaderboard[0]?.name);
       } catch (error) {
-        alert("Failed to fetch");
+        toast.error("Failed to fetch");
         console.error(error);
       } finally {
         setLoading(false)
@@ -246,6 +246,7 @@ export default function LeaderBoard() {
 // import { useEffect, useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import Fuse from 'fuse.js';
+import toast from "react-hot-toast";
 
 export function VoiceAssistant() {
   const wakeWord = 'hey brain';

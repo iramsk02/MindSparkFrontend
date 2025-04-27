@@ -7,6 +7,7 @@ import Logo from "../icons/Logo";
 import LoadingScreen from "./Loading";
 import { Menu, X } from "lucide-react"; // lucide-react for icons
 import Home from "../icons/Home";
+import toast from "react-hot-toast";
 
 
 export default function InstructorDashboard() {
@@ -45,11 +46,11 @@ export default function InstructorDashboard() {
             if (response.ok) {
                 setInstructorsCourses(data);
             } else {
-                alert(`Failed to fetch instructor's courses: ${data.message}`);
+                toast.error(`Failed to fetch instructor's courses: ${data.message}`);
             }
         } catch (error) {
             console.error('Error fetching instructor courses:', error);
-            alert('An error occurred while retrieving instructor courses.');
+            toast.error('An error occurred while retrieving instructor courses.');
         }finally{setLoading(false)}
     }
 

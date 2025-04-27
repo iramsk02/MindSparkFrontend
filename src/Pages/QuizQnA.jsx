@@ -7,6 +7,7 @@ import Home from "../icons/Home";
 import LoadingScreen from "./Loading";
 // import LoadingScreen from "./Loading";
 import { Menu, X } from "lucide-react"; 
+import toast from "react-hot-toast";
 
 export default function QuizQnA() {
     const [quiz, setQuiz] = useState(null);
@@ -40,7 +41,7 @@ export default function QuizQnA() {
                     setQuiz(foundQuiz);
                 }
             } catch (err) {
-                console.error("Error fetching quiz:", err);
+                toast.error("Error fetching quiz:", err);
             }finally{
                 setLoading(false)
             }

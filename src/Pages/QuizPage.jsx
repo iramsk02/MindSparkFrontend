@@ -37,7 +37,7 @@ export default function QuizPage() {
       const data = await response.json();
       setQuiz(data.Quiz);
     } catch (error) {
-      alert("Failed to fetch quizzes.");
+      toast.error("Failed to fetch quizzes.");
       console.error(error);
     }finally{
       setLoading(false)
@@ -123,6 +123,7 @@ export default function QuizPage() {
   );
 }
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import toast from "react-hot-toast";
 
 export function VoiceAssistant ()  {
   const keywords = [

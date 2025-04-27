@@ -61,11 +61,11 @@ export default function SignUpForm() {
 
 
       } else if (response.status === 400) {
-        alert('user already exists');
+        toast.error('user already exists');
       }
     } catch (error) {
-      alert('An error occurred', error);
-      console.log(error)
+      toast.error('An error occurred', error);
+    
     }
 
 

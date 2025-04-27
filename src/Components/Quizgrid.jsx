@@ -2,7 +2,6 @@ import QuizCard from "./Quizcard";
 import { useEffect, useState } from "react";
 
 export default function QuizGrid({quiz}){
-    console.log("quiz grid",quiz)
 
    
 

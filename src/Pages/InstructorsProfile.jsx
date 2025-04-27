@@ -45,11 +45,11 @@ async function getInstructorsCourses() {
         if (response.ok) {
             setInstructorsCourses(data);
         } else {
-            alert(`Failed to fetch instructor's courses: ${data.message}`);
+            toast.error(`Failed to fetch instructor's courses: ${data.message}`);
         }
     } catch (error) {
         console.error('Error fetching instructor courses:', error);
-        alert('An error occurred while retrieving instructor courses.');
+        toast.error('An error occurred while retrieving instructor courses.');
     }
 }
 

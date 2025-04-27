@@ -9,6 +9,7 @@ import LoadingScreen from "./Loading";
 
 // Icons from lucide-react
 import { Menu, X, Home } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function Instructor() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +41,7 @@ export default function Instructor() {
       setEducators(educators);
       console.log(educators);
     } catch (err) {
-      console.error("Error fetching educators:", err);
+      toast.error("Error fetching educators:", err);
     }
   }
 

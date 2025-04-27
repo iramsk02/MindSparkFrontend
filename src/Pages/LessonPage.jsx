@@ -6,6 +6,7 @@ import Home from "../icons/Home";
 import LoadingScreen from "./Loading";
 import { Menu, X } from "lucide-react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function LessonPage() {
   const { state } = useLocation();
@@ -100,7 +101,7 @@ export default function LessonPage() {
         ]);
       }
     } catch (err) {
-      console.error("AI error:", err);
+      toast.error("AI error:", err);
     } finally {
       setQuestion("");
       setLoading(false);

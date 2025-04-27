@@ -4,6 +4,7 @@ import Logo from "../icons/Logo";
 import LoadingScreen from "./Loading";
 import { Menu, X } from "lucide-react"; // lucide-react for icons
 import Home from "../icons/Home";
+import toast from "react-hot-toast";
 
 export default function Courses() {
   const [courses, setCourses] = useState([]);
@@ -27,11 +28,10 @@ export default function Courses() {
       if (response.ok) {
         setCourses(data);
       } else {
-        alert(`Failed to fetch courses: ${data.message}`);
+        toast.error(`Failed to fetch courses: ${data.message}`);
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred while retrieving courses.');
+      toast.error('An error occurred while retrieving courses.');
     } finally {
       setLoading(false);
     }
