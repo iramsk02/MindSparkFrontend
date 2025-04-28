@@ -17,7 +17,7 @@ export default function SignUpForm() {
   });
   console.log(selectedRole)
   const handleSubmit = async (e) => {
-    alert("submitt")
+    toast.success("submitting")
     e.preventDefault();
     // Handle form submission
 
