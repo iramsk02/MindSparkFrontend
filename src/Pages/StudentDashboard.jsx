@@ -149,7 +149,7 @@ export default function StudentDashboard() {
         <div className="flex-1">
           <h1 className="text-2xl md:text-3xl font-bold">Welcome Back</h1>
           <p className="text-gray-600 mt-2 text-sm md:text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu.
+{/*             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu. */}
           </p>
         </div>
         <div className="flex-1 bg-gray-100 rounded-lg p-4 shadow-md w-full max-w-sm">
