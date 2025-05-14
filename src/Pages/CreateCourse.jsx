@@ -177,13 +177,13 @@ export default function CreateCourse() {
                 {isSubmitting && (
                     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
                         <div className="bg-white px-6 py-4 rounded-lg shadow-lg text-lg font-semibold text-indigo-700 animate-pulse">
-                            Creating Course...
+                            Creating Lecture...
                         </div>
                     </div>
                 )}
 
                 <section className={`bg-white shadow-lg rounded-lg p-6 md:p-10 ${isSubmitting ? "pointer-events-none opacity-50" : ""}`}>
-                    <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create a New Course</h2>
+                    <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create a New Lecture</h2>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
@@ -225,7 +225,7 @@ export default function CreateCourse() {
                         </div>
 
                         <div>
-                            <label htmlFor="video" className="block font-medium text-gray-700">Upload Course Video</label>
+                            <label htmlFor="video" className="block font-medium text-gray-700">Upload Lecture Video</label>
                             <input
                                 type="file"
                                 id="video"

@@ -103,7 +103,7 @@ export default function InstructorDashboard() {
                         </a>
                         <a href="/Createcourse" className="flex items-center gap-1 hover:text-white transition font-medium">
                             <Book size={18} />
-                            <span>Create Course</span>
+                            <span>Create Lecture</span>
                         </a>
                         <div className="ml-2">
                             {role === "student" ? (
@@ -150,7 +150,7 @@ export default function InstructorDashboard() {
                         </a>
                         <a href="/Createcourse" className="flex items-center gap-2 py-2 hover:text-white transition">
                             <Book size={18} />
-                            <span>Create Course</span>
+                            <span>Create Lecture</span>
                         </a>
                         <a href="/InstructorProfile" className="flex items-center gap-2 py-2 hover:text-white transition">
                             <img 
@@ -179,7 +179,7 @@ export default function InstructorDashboard() {
                             className="mt-6 md:mt-0 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition flex items-center gap-2 font-medium shadow-sm"
                         >
                             <Plus size={18} />
-                            Create New Course
+                            Create New Lecture
                         </button>
                     </div>
                 </section>
@@ -192,7 +192,7 @@ export default function InstructorDashboard() {
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold mb-1 text-gray-800">{instructorsCourses.length}</h2>
-                            <p className="text-gray-500 text-sm">Your Courses</p>
+                            <p className="text-gray-500 text-sm">Your Lectures</p>
                         </div>
                     </div>
                     <div className="bg-white shadow-md rounded-xl p-6 flex items-center transition hover:shadow-lg border border-gray-100">
@@ -218,7 +218,7 @@ export default function InstructorDashboard() {
                 {/* Created Courses */}
                 <section className="mb-16">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-bold text-gray-800">Your Courses</h2>
+                        <h2 className="text-2xl font-bold text-gray-800">Your Lectures</h2>
                         <a 
                             href="/Createcourse" 
                             className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center gap-1"
@@ -231,13 +231,13 @@ export default function InstructorDashboard() {
                     ) : (
                         <div className="bg-white rounded-xl p-10 text-center shadow-md border border-gray-100">
                             <Book size={48} className="mx-auto text-gray-300 mb-4" />
-                            <h3 className="text-xl font-medium text-gray-700 mb-2">No courses created yet</h3>
-                            <p className="text-gray-500 mb-6 max-w-md mx-auto">Start creating engaging courses for your students and share your knowledge with the world.</p>
+                            <h3 className="text-xl font-medium text-gray-700 mb-2">No Lectures created yet</h3>
+                            <p className="text-gray-500 mb-6 max-w-md mx-auto">Start creating engaging Lectures for your students and share your knowledge with the world.</p>
                             <button 
                                 onClick={() => navigate("/Createcourse")} 
                                 className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
                             >
-                                Create Your First Course
+                                Create Your First Lecture
                             </button>
                         </div>
                     )}
@@ -246,7 +246,7 @@ export default function InstructorDashboard() {
                 {/* Trending Courses */}
                 <section className="mb-20">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-bold text-gray-800">Trending Courses</h2>
+                        <h2 className="text-2xl font-bold text-gray-800">Trending Lectures</h2>
                         <a 
                             href="/AllCourses" 
                             className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center gap-1"
@@ -258,7 +258,7 @@ export default function InstructorDashboard() {
                         <VideoGrid videos={otherCourses} />
                     ) : (
                         <div className="bg-white rounded-xl p-8 text-center shadow-md border border-gray-100">
-                            <p className="text-gray-500">No trending courses available at the moment.</p>
+                            <p className="text-gray-500">No trending Lectures available at the moment.</p>
                         </div>
                     )}
                 </section>

@@ -213,7 +213,7 @@ export default function LessonPage() {
                 </a>
                 <a href="/Createcourse" className="hover:text-white transition flex items-center gap-1">
                   <Award size={18} />
-                  <span>Create Course</span>
+                  <span>Create Lecture</span>
                 </a>
               </>
             )}
@@ -261,7 +261,7 @@ export default function LessonPage() {
             </a>
                 <a href="/Createcourse" className="hover:text-white transition py-2 flex items-center gap-2">
                   <Calendar size={18} />
-                  <span>Create Course</span>
+                  <span>Create Lecture</span>
                 </a>
               </>
             )}
@@ -572,7 +572,7 @@ export default function LessonPage() {
             <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                 <PlayCircle size={18} className="text-blue-600" />
-                Related Lessons
+                Related Lectures
               </h3>
               
               <div className="space-y-3">

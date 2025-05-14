@@ -189,7 +189,7 @@ export default function CreateQuiz() {
                        
                         <a href="/Createcourse" className="flex items-center gap-1 hover:text-white transition font-medium">
                             <Book size={18} />
-                            <span>Create Course</span>
+                            <span>Create Lecture</span>
                         </a>
                         <div className="ml-2">
                             {role === "student" ? (
@@ -233,7 +233,7 @@ export default function CreateQuiz() {
                        
                         <a href="/Createcourse" className="flex items-center gap-2 py-2 hover:text-white transition">
                             <Book size={18} />
-                            <span>Create Course</span>
+                            <span>Create Lecture</span>
                         </a>
                         <a href="/InstructorProfile" className="flex items-center gap-2 py-2 hover:text-white transition">
                             <img 

@@ -165,7 +165,7 @@ async function getInstructorsCourses() {
                 </a>
                 <a href="/Createcourse" className="hover:text-white transition flex items-center gap-1">
                   <Book size={18} />
-                  <span>Create Course</span>
+                  <span>Create Lectures</span>
                 </a>
                  <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
                   {/* <Award size={18} /> */}
@@ -221,7 +221,7 @@ async function getInstructorsCourses() {
             </a>
                 <a href="/Createcourse" className="hover:text-white transition py-2 flex items-center gap-2">
                   <Award size={18} />
-                  <span>Create Course</span>
+                  <span>Create Lectures</span>
                 </a>
                  <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
                   {/* <Award size={18} /> */}
@@ -294,11 +294,11 @@ async function getInstructorsCourses() {
           </div>
 
           <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">Course Stats</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mb-2">Lectures Stats</h3>
             <div className="grid grid-cols-2 gap-4 text-center">
               <div className="bg-indigo-100 rounded-xl p-4">
                 <p className="text-xl font-bold text-indigo-600">{instructorsCourses.length || 0}</p>
-                <p className="text-sm text-gray-600">Courses Created</p>
+                <p className="text-sm text-gray-600">Lectures Created</p>
               </div>
             
             </div>

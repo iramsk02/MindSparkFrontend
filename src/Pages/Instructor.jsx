@@ -67,7 +67,7 @@ export default function Instructor() {
           <div className="hidden md:flex items-center gap-6 text-gray-300 text-md">
             <a href="/Courses" className="hover:text-white transition flex items-center gap-1">
               <BookOpen size={18} />
-              <span>Explore Courses</span>
+              <span>Explore Lectures</span>
             </a>
             <a href="/Signup" className="hover:text-white transition flex items-center gap-1 bg-blue-600 px-4 py-1.5 rounded-full text-white">
               <UserPlus size={18} />
@@ -94,7 +94,7 @@ export default function Instructor() {
             
             <a href="/Courses" className="hover:text-white transition flex items-center gap-2 py-2">
               <BookOpen size={18} />
-              <span>Explore Courses</span>
+              <span>Explore Lectures</span>
             </a>
             <a href="/Signup" className="hover:text-white transition flex items-center gap-2 py-2 bg-blue-600 px-4 rounded-lg text-white my-1">
               <UserPlus size={18} />
@@ -130,7 +130,7 @@ export default function Instructor() {
                   href="/Courses"
                   className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
                 >
-                  Explore Courses <ChevronRight size={18} />
+                  Explore Lectures <ChevronRight size={18} />
                 </a>
                 <a
                   href="/Signup"
@@ -176,7 +176,7 @@ export default function Instructor() {
             </div>
             <div className="p-6 rounded-lg bg-blue-50">
               <h3 className="text-3xl font-bold text-blue-900">50+</h3>
-              <p className="text-gray-600">Active Courses</p>
+              <p className="text-gray-600">Active Lectures</p>
             </div>
             <div className="p-6 rounded-lg bg-blue-50">
               <h3 className="text-3xl font-bold text-blue-900">300+</h3>

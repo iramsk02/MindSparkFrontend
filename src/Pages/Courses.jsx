@@ -282,7 +282,7 @@ export default function Courses() {
               Get Started <ChevronRight size={18} />
             </button>
             <a href="/Courses" className="border border-gray-400 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-blue-900 transition-all">
-              Explore Courses
+              Explore Lectures
             </a>
           </div>
           <div className="flex items-center justify-center md:justify-start gap-4 pt-4">
@@ -310,7 +310,7 @@ export default function Courses() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
             <h2 className="text-3xl font-bold text-center md:text-left">
-              <span className="border-b-4 border-blue-600 pb-2">Trending</span> Courses
+              <span className="border-b-4 border-blue-600 pb-2">Trending</span> Lectures
             </h2>
             <div className="mt-4 md:mt-0 flex gap-2">
               <button className="bg-blue-50 hover:bg-blue-100 text-blue-900 px-4 py-2 rounded-lg font-medium">
@@ -343,13 +343,13 @@ export default function Courses() {
                     <source src={course.videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  {hoveredCourse === index && (
+                  {/* {hoveredCourse === index && (
                     <div className="absolute inset-0 bg-blue-900 bg-opacity-70 flex items-center justify-center">
                       <button className="bg-white text-blue-900 px-4 py-2 rounded-lg font-medium">
-                        Preview Course
+                        Preview Cou
                       </button>
                     </div>
-                  )}
+                  )} */}
                   <div className="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded-md text-xs">
                     Featured
                   </div>
@@ -382,7 +382,7 @@ export default function Courses() {
           
           <div className="mt-12 text-center">
             <button className="bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium inline-flex items-center">
-              View All Courses <ChevronRight size={18} className="ml-1" />
+              View All Lectures <ChevronRight size={18} className="ml-1" />
             </button>
           </div>
         </div>
