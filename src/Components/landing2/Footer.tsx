@@ -34,7 +34,7 @@ export const Footer= () => {
 
     {/* Bottom bar */}
     <div className="mt-8 border-t border-gray-600 pt-4 text-center text-sm text-gray-400">
-      © {new Date().getFullYear()} MIcroLearn. All rights reserved.
+      © {new Date().getFullYear()} MindSpark. All rights reserved.
     </div>
   </div>
 </footer>
