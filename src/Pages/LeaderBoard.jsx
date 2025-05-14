@@ -1,343 +1,458 @@
 import React, { useState, useEffect } from "react";
-import UserCard from "../Components/leaderboard/UserCard";
-import RankingRow from "../Components/leaderboard/RankingRow";
+import { Menu, X, Search, Bell, User, Book, Award, Calendar, Activity, Zap, Medal, Crown, Trophy, Users, ListChecks } from "lucide-react";
 import Logo from "../icons/Logo";
-import LoadingScreen from "./Loading";
-import { Menu, X } from "lucide-react"; // lucide-react for icons
 import Home from "../icons/Home";
+import LoadingScreen from "./Loading";
+import toast from "react-hot-toast";
 
+// UserCard component with improved styling matching dashboard theme
+const UserCard = ({ image, name, position, points }) => {
+  // Define position-based styling
+  const getPositionStyles = () => {
+    if (position === 1) {
+      return {
+        containerClass: "h-70 z-30 scale-110 ",
+        medalColor: "bg-yellow-400",
+        icon: <Crown size={24} className="text-yellow-600" />,
+        labelText: "Champion",
+        gradient: "bg-gradient-to-b from-yellow-300 to-yellow-500"
+      };
+    } else if (position === 2) {
+      return {
+        containerClass: "h-66 z-20 scale-110 mt-4",
+        medalColor: "bg-gray-300",
+        icon: <Medal size={22} className="text-gray-600" />,
+        labelText: "Runner-up",
+        gradient: "bg-gradient-to-b from-gray-200 to-gray-400"
+      };
+    } else {
+      return {
+        containerClass: "h-62 z-20 scale-110 mt-8",
+        medalColor: "bg-amber-700",
+        icon: <Trophy size={20} className="text-amber-900" />,
+        labelText: "Top 3",
+        gradient: "bg-gradient-to-b from-amber-600 to-amber-800"
+      };
+    }
+  };
+
+  const styles = getPositionStyles();
+
+  return (
+   
+    <div className={`relative bottom-0 flex flex-col  items-center ${styles.containerClass} transition-all duration-300 hover:scale-105`}>
+      {/* Position indicator with animation */}
+      <div className="absolute -top-4  flex items-center justify-center w-10 h-10 rounded-full shadow-lg border-2 border-white animate-pulse" style={{ animationDuration: '3s' }}>
+        <div className={`w-full h-full rounded-full ${styles.gradient} flex items-center justify-center text-white font-bold`}>
+          {position}
+        </div>
+      </div>
+
+      {/* Profile image with decorative elements */}
+      <div className="relative mb-3 mt-7">
+        <div className="absolute inset-0 rounded-full bg-primary animate-pulse opacity-30" style={{ animationDuration: '2.5s' }}></div>
+        <div className="relative">
+          <img
+            src={image || "/api/placeholder/100/100"}
+            alt={name}
+            className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+          />
+          <div className="absolute -bottom-1 -right-1 p-1 rounded-full bg-white shadow-sm">
+            {styles.icon}
+          </div>
+        </div>
+      </div>
+
+      {/* User info with card design */}
+      <div className="w-full max-w-[180px]  mt-4 rounded-xl overflow-hidden shadow-md bg-white">
+        <div className={`${styles.gradient} py-1 px-3 text-white text-xs font-medium text-center`}>
+          {styles.labelText}
+        </div>
+        <div className="p-3 flex-col justify-between items-center  h-40">
+          <h3 className="font-semibold text-gray-800 mb-1 truncate">{name}</h3>
+
+          {/* XP display with progress indicator */}
+          <div className="flex items-center justify-center gap-1 ">
+            <Zap size={16} className="text-blue-600" />
+            <span className="font-bold text-lg">{points}</span>
+            <span className="text-xs text-gray-500">XP</span>
+          </div>
+
+          {/* Progress bar */}
+          {/* <div className="w-full bg-gray-100 rounded-full h-2 mb-2">
+            <div
+              className="bg-blue-600 h-2 rounded-full"
+              style={{ width: `${Math.min(100, points / 15)}%` }}
+            ></div>
+          </div> */}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// RankingRow component with improved styling
+const RankingRow = ({ image, name, position, points }) => {
+  // Determine badge style based on position
+  const getBadgeStyle = () => {
+    if (position === 1) {
+      return "bg-yellow-400 text-yellow-800";
+    } else if (position === 2) {
+      return "bg-gray-300 text-gray-700";
+    } else if (position === 3) {
+      return "bg-amber-700 text-white";
+    } else {
+      return "bg-gray-100 text-gray-600";
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-300 mb-1 group">
+      {/* Position badge */}
+      {/* <div className={`flex items-center justify-between min-w-[36px] h-9 rounded-full ${getBadgeStyle()} font-bold mr-3`}>
+        {position}
+      </div> */}
+
+      {/* User info */}
+      <div className="flex items-center justify-between flex-grow overflow-hidden">
+        <div className="relative">
+          <div>    
+                 <img
+            src={image || "/api/placeholder/46/46"}
+            alt={name}
+            className="w-11 h-11 rounded-full object-cover border-2 border-gray-200 group-hover:border-blue-300 transition-colors duration-300"
+          />
+            {position <= 3 && (
+              <div className="absolute -bottom-1 -right-1 rounded-full bg-white p-0.5 shadow-sm">
+                {position === 1 ?
+                  <Crown size={14} className="text-yellow-500" /> :
+                  position === 2 ?
+                    <Medal size={14} className="text-gray-500" /> :
+                    <Trophy size={14} className="text-amber-700" />
+                }
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="ml-3 font-medium text-gray-800 truncate">{name}</div>
+         <div className="flex items-center">
+        <Zap size={16} className="text-blue-600 mr-1" />
+        <span className="font-bold text-gray-800">{points}</span>
+        <span className="text-xs text-gray-500 ml-1">XP</span>
+      </div>
+      </div>
+
+      {/* XP display with small icon */}
+     
+    </div>
+  );
+};
 
 export default function LeaderBoard() {
   const [leaders, setLeaders] = useState([]);
-  const [topPerformer, settopPerformer] = useState("");
-  const role = localStorage.getItem("role");
-  const avatar = localStorage.getItem("avatar");
+  const [topPerformer, setTopPerformer] = useState("");
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [leaderboardView, setLeaderboardView] = useState("all"); // "all", "friends", "nearby"
+  const [timeFrame, setTimeFrame] = useState("month"); // "week", "month", "allTime"
+
+  // Get user data
+  const token = localStorage.getItem("token");
+  const avatar = localStorage.getItem("avatar");
+  const role = localStorage.getItem("role");
+  const username = localStorage.getItem("user");
+
+  // Find user rank
+  const getUserRank = () => {
+    const userIndex = leaders.findIndex(leader => leader.name === user.name);
+    return userIndex !== -1 ? userIndex + 1 : "N/A";
+  };
 
   useEffect(() => {
-    const fetchLeaders = async () => {
+    const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
-        // const res = await fetch("http://localhost:5000/api/progress/leaderboard", {
+        // Fetch leaderboard data
         const res = await fetch("https://mindspark-backend.onrender.com/api/progress/leaderboard", {
           headers: { Authorization: token },
         });
-
         const data = await res.json();
-        console.log(data);
         setLeaders(data.leaderboard);
-        settopPerformer(data.leaderboard[0]?.name);
+
+        if (data.leaderboard.length > 0) {
+          setTopPerformer(data.leaderboard[0].name);
+        }
+
+        // Fetch user profile
+        const userRes = await fetch(`https://mindspark-backend.onrender.com/api/users/getProfile/${username}`, {
+          headers: { Authorization: token },
+        });
+        const userData = await userRes.json();
+        setUser(userData);
       } catch (error) {
-        toast.error("Failed to fetch");
+        toast.error("Failed to fetch leaderboard data");
         console.error(error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchLeaders();
-  }, []);
-  if (loading) return <LoadingScreen />; //  use loading screen here
+    };
 
-  return (
-    <>
-      <main className="w-full bg-white min-h-screen">
+    fetchData();
+  }, [token, username]);
 
-        <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
-          <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-            {/* Logo Section */}
-            <div className="flex items-center gap-2">
-              <Logo navigateto={"/StudentDashboard"} />
-              <span className="font-bold text-xl">MindSpark</span>
-            </div>
-
-            {/* Desktop Links */}
-            <div className="hidden md:flex gap-6 text-gray-300 text-md">
-              <a href="/StudentDashboard" className="hover:text-white transition"><Home /></a>
-              {/* <a href="/StudentDashboard" className="hover:text-white transition">Home</a> */}
-              <a href="/Quiz" className="hover:text-white transition">Quiz</a>
-              {/* <a href="/Signin" className="hover:text-white transition">Sign In</a> */}
-              <div className="">
-                {role === "student" ? <a href="/StudentProfile"><img className=" bg-amber-300 w-[42px] h-[42px] rounded-[260px] border-amber-50 border-1" src={avatar} alt="DP" /></a> : <a href="/InstructorProfile"><img className=" bg-amber-300 w-[42px] h-[42px] rounded-[260px] border-amber-50 border-1" src={avatar} alt="DP" /></a>}
-
-              </div>
-            </div>
-
-            {/* Mobile Menu Toggle */}
-            <div className="md:hidden">
-              <button onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Links */}
-          {isOpen && (
-            <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
-              <a href="/StudentDashboard" className="hover:text-white transition">Home</a>
-              <a href="/Quiz" className="hover:text-white transition">Quiz</a>
-              <a href="/StudentProfile" className="hover:text-white transition">Profile</a>
-            </div>
-          )}
-        </nav>
-
-        <section className="px-4 sm:px-6 lg:px-8 pt-28 flex flex-col items-center gap-8">
-          <div>
-            {/* <div><VoiceAssistant /></div> */}
-            <section className="flex flex-wrap justify-center items-end gap-x-6 gap-y-8 mb-6">
-              {leaders.map((leader, index) =>
-                index < 3 ? (
-                  <UserCard
-                    key={index}
-                    name={leader.name}
-                    position={index + 1}
-                    points={leader.xp}
-                    image={leader.avatar}
-                  />
-                ) : null
-              )}
-            </section>
-          </div>
-
-          <p className="mb-6 text-center h-20">
-            <span className="text-xl font-bold text-black">{topPerformer}</span>
-            <span className="text-base text-neutral-950"> is on top of the leaderboard this month</span>
-          </p>
-
-
-
-          <div className="w-full max-w-md sm:max-w-2xl md:max-w-3xl">
-            <section className="rounded-xl bg-neutral-700 bg-opacity-50 w-full">
-              <div className="flex flex-col">
-                <div className="px-6 sm:px-8 py-4 text-lg font-medium text-white bg-neutral-500 bg-opacity-40 h-[57px] rounded-t-lg flex justify-between">
-                  <div>Name</div>
-                  <div>Rank</div>
-                  <div>XP</div>
-                </div>
-                <div className="m-5">
-                  {leaders.map((leader, index) => (
-                    <RankingRow
-                      key={index}
-                      name={leader.name}
-                      points={leader.xp}
-                      position={index + 1}
-                      image={leader.avatar}
-                    />
-                  ))}
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-      </main>
-    </>
+  // Filter leaders based on search query
+  const filteredLeaders = leaders.filter(leader =>
+    leader.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-}
 
-
-
-// // import { useSpeechRecognition } from 'react-speech-recognition';
-// import {  useRef} from 'react';
-// import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
-// export function VoiceAssistant({ courses = [] }) {
-//   const wakeWord = 'hey brain';
-//   const [wakeHeard, setWakeHeard] = useState(false);
-
-//   const keywords = [
-//     {
-//       // keyword: 'dashboard',
-//       // action: () => navigateTo('/StudentDashboard'),
-//     },
-//     {
-//       keyword: 'profile',
-//       action: () => navigateTo('/StudentProfile'),
-//     },
-//     {
-//       keyword: 'quiz',
-//       action: () => navigateTo('/Quiz'),
-//     },
-//     {
-//       keyword: 'leaderboard',
-//       action: () => navigateTo('/Leaderboard'),
-//     },
-//   ];
-
-//   const {
-//     transcript,
-//     listening,
-//     resetTranscript,
-//     browserSupportsSpeechRecognition,
-//   } = useSpeechRecognition();
-
-//   const navigateTo = (path) => {
-//     speak(`Opening ${path.replace('/', '')}`);
-//     window.location.href = path;
-//   };
-
-//   const speak = (message) => {
-//     const synth = window.speechSynthesis;
-//     const utter = new SpeechSynthesisUtterance(message);
-//     synth.speak(utter);
-//   };
-
-//   useEffect(() => {
-//     if (!browserSupportsSpeechRecognition) {
-//       alert('Browser does not support speech recognition.');
-//       return;
-//     }
-
-//     // Start listening continuously
-//     SpeechRecognition.startListening({ continuous: true });
-//   }, []);
-
-//   useEffect(() => {
-//     const lowerTranscript = transcript.toLowerCase();
-
-//     if (!wakeHeard && lowerTranscript.includes(wakeWord)) {
-//       setWakeHeard(true);
-//       speak('Yes, how can I help you?');
-//       resetTranscript(); // clear after detecting wake word
-//       return;
-//     }
-
-//     if (wakeHeard) {
-//       let commandDetected = false;
-
-//       keywords.forEach(({ keyword, action }) => {
-//         if (lowerTranscript.includes(keyword)) {
-//           action();
-//           commandDetected = true;
-//         }
-//       });
-
-//       // Match lesson title
-//       if (lowerTranscript.includes('start')) {
-//         alert("hhhi")
-//         const matchedLesson = courses.find(lesson =>
-//           lowerTranscript.includes(lesson.title.toLowerCase())
-//         );
-
-//         if (matchedLesson) {
-//           speak(`Starting lesson: ${matchedLesson.title}`);
-//           window.location.href = `/lesson/${matchedLesson._id}`;
-//           commandDetected = true;
-//         }
-//       }
-
-//       if (commandDetected) {
-//         resetTranscript(); // clear after processing command
-//         setWakeHeard(false); // reset wake word detection
-//       }
-//     }
-//   }, [transcript]);
-
-//   return (
-//     <div className="p-4 rounded-lg shadow bg-gray-100 max-w-70">
-//       <p className="mt-2 text-sm text-gray-600">
-//         {listening ? '🎤 Voice Assistant Listening...' : 'Click to start listening'}
-//       </p>
-//       <p className="text-xs mt-1 text-gray-800">Heard: {transcript}</p>
-//     </div>
-//   );
-// }
-
-
-// import { useEffect, useState } from 'react';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import Fuse from 'fuse.js';
-import toast from "react-hot-toast";
-
-export function VoiceAssistant() {
-  const wakeWord = 'hey brain';
-  const [wakeHeard, setWakeHeard] = useState(false);
-
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
-  const navigateTo = (path) => {
-    speak(`Opening ${path.replace('/', '')}`);
-    window.location.href = path;
-  };
-
-  const speak = (message) => {
-    const synth = window.speechSynthesis;
-    const utter = new SpeechSynthesisUtterance(message);
-    synth.speak(utter);
-  };
-
-  const keywords = [
-    {
-      keyword: 'profile',
-      action: () => navigateTo('/StudentProfile'),
-    },
-    {
-      keyword: 'quiz',
-      action: () => navigateTo('/Quiz'),
-    },
-    {
-      keyword: 'leaderboard',
-      action: () => navigateTo('/Leaderboard'),
-    },
-    {
-      keyword: 'dashboard',
-      action: () => navigateTo('/StudentDashboard'),
-    },
-  ];
-
-  useEffect(() => {
-    if (!browserSupportsSpeechRecognition) {
-      alert('Browser does not support speech recognition.');
-      return;
-    }
-
-    // Start listening continuously
-    SpeechRecognition.startListening({ continuous: true });
-  }, []);
-
-  useEffect(() => {
-    const lowerTranscript = transcript.toLowerCase();
-
-    // Step 1: Detect wake word
-    if (!wakeHeard && lowerTranscript.includes(wakeWord)) {
-      setWakeHeard(true);
-      speak('Yes, how can I help you?');
-      resetTranscript();
-      return;
-    }
-
-    // Step 2: Handle commands only if wake word was detected
-    if (wakeHeard) {
-      let commandDetected = false;
-
-      // Handle navigation keywords
-      for (const { keyword, action } of keywords) {
-        if (lowerTranscript.includes(keyword)) {
-          action();
-          commandDetected = true;
-          break;
-        }
-      }
-
-     
-
-      if (commandDetected) {
-        resetTranscript();
-        setWakeHeard(false); // reset for next wake word
-      }
-    }
-  }, [transcript]);
+  if (loading) return <LoadingScreen />;
 
   return (
-    <div className="p-4 rounded-lg shadow bg-gray-100 max-w-70">
-      <p className="mt-2 text-sm text-gray-600">
-        {listening ? '🎤 Voice Assistant Listening...' : 'Click to start listening'}
-      </p>
-      <p className="text-xs mt-1 text-gray-800">Heard: {transcript}</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
+        <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+          {/* Logo Section */}
+          <div className="flex items-center gap-2 cursor-pointer">
+            <Logo navigateto={"/StudentDashboard"} />
+            <span className="font-bold text-xl">MindSpark</span>
+          </div>
+
+          {/* Search Bar - Desktop */}
+          <div className="hidden md:flex relative w-1/3">
+            <input
+              type="text"
+              placeholder="Search users..."
+              className="w-full py-2 px-4 pl-10 rounded-full bg-primary-dark text-white placeholder-gray-300 border border-gray-700 focus:outline-none focus:border-blue-400"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
+          </div>
+
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-6 text-gray-300 text-md">
+            <a href="/StudentDashboard" className="hover:text-white transition flex items-center gap-1">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
+              <ListChecks size={18} />
+              <span>Quiz</span>
+            </a>
+           
+            {/* <div className="relative">
+              <Bell size={20} className="cursor-pointer hover:text-white" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+            </div> */}
+             <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+              <img
+                className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
+                src={avatar || "https://via.placeholder.com/42"}
+                alt="Profile"
+              />
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Links */}
+        {isOpen && (
+          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
+            {/* Mobile Search */}
+            <div className="relative mt-3">
+              <input
+                type="text"
+                placeholder="Search users..."
+                className="w-full py-2 px-4 pl-10 rounded-full bg-primary-dark text-white placeholder-gray-300 border border-gray-700 focus:outline-none"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
+            </div>
+
+            <a href="/StudentDashboard" className="hover:text-white transition flex items-center gap-2 py-2">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+           
+            <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-2 py-2 text-white">
+              <Award size={18} />
+              <span>Leaderboard</span>
+            </a>
+            <a href="/StudentProfile" className="hover:text-white transition flex items-center gap-2 py-2">
+              <User size={18} />
+              <span>Profile</span>
+            </a>
+            <a href="/signout" className="hover:text-white transition flex items-center gap-2 py-2">
+              <span>Sign Out</span>
+            </a>
+          </div>
+        )}
+      </nav>
+
+      {/* Main Content */}
+      <div className="pt-20 px-4 md:px-8 lg:px-12 max-w-7xl mx-auto">
+        {/* Leaderboard Header */}
+        <div className="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 shadow-lg text-white mt-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+                <Award size={28} />
+                Leaderboard
+              </h1>
+              <p className="mt-2 text-sm md:text-base opacity-90">
+                {topPerformer ? `${topPerformer} is leading the way!` : "Compete with others and climb the ranks!"}
+              </p>
+            </div>
+            <div className="mt-4 md:mt-0 flex items-center gap-3">
+              <div className="text-center">
+                <div className="flex items-center gap-1">
+                  <Trophy size={18} />
+                  <span className="font-bold text-xl">{getUserRank()}</span>
+                </div>
+                <span className="text-xs">Your Rank</span>
+              </div>
+              <div className="h-10 w-px bg-blue-300 mx-2"></div>
+              <div className="text-center">
+                <div className="font-bold text-xl">{user.xp || 0}</div>
+                <span className="text-xs">Your XP</span>
+              </div>
+              <div className="h-10 w-px bg-blue-300 mx-2"></div>
+              <div className="text-center">
+                <div className="font-bold text-xl">{user.streak?.current || 0}</div>
+                <span className="text-xs">Day Streak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        {/* Top 3 Performers */}
+        <div className="mt-12">
+          <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+            <Crown size={20} className="text-yellow-500" />
+            Top Performers
+          </h2>
+
+          <div className="flex flex-wrap justify-center gap-6 mb-10 ">
+            {leaders.slice(1, 2).map((leader, index) => (
+              <UserCard
+                key={index}
+                name={leader.name}
+                position={2}
+                points={leader.xp}
+                image={leader.avatar}
+              />
+            ))}
+
+            {leaders.slice(0, 1).map((leader, index) => (
+              <UserCard
+                key={index}
+                name={leader.name}
+                position={1}
+                points={leader.xp}
+                image={leader.avatar}
+              />
+            ))}
+
+            {leaders.slice(2, 3).map((leader, index) => (
+              <UserCard
+                key={index}
+                name={leader.name}
+                position={3}
+                points={leader.xp}
+                image={leader.avatar}
+              />
+            ))}
+          </div>
+        </div>
+
+
+        {/* Your Position Card */}
+        <div className="bg-blue-50 rounded-xl shadow-md p-4 border-l-4 border-blue-600 mb-10">
+          <h3 className="text-lg font-bold text-gray-800 mb-3">Your Position</h3>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold">
+                {getUserRank()}
+              </div>
+              <img
+                src={avatar || "/api/placeholder/40/40"}
+                alt="Your avatar"
+                className="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
+              />
+              <div>
+                <h4 className="font-medium">{user.name || "You"}</h4>
+                <p className="text-sm text-gray-500">Keep going! 🚀</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1">
+              <Zap size={18} className="text-blue-600" />
+              <span className="font-bold text-xl">{user.xp || 0}</span>
+              <span className="text-sm text-gray-500">XP</span>
+            </div>
+          </div>
+
+          {/* Next rank progress */}
+          <div className="mt-4">
+            <div className="flex justify-between text-sm mb-1">
+              <span>Progress to next rank</span>
+              <span>
+                {leaders[getUserRank()]
+                  ? `${leaders[getUserRank() - 2]?.xp - (user.xp || 0)} XP to catch up`
+                  : "Keep earning XP!"}
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="bg-blue-600 h-2 rounded-full"
+                style={{
+                  width: leaders[getUserRank() - 2] && user.xp
+                    ? `${Math.min(100, ((user.xp) / leaders[getUserRank() - 2]?.xp) * 100)}%`
+                    : "10%"
+                }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Leaderboard List */}
+        <div className="bg-white rounded-xl shadow-md mb-10 ml-40 mr-40  flex flex-col justify-center overflow-hidden">
+          <div className="bg-primary text-white p-4 flex justify-between items-center">
+            <h3 className="font-semibold">Rank</h3>
+            <h3 className="font-semibold">Player</h3>
+            <h3 className="font-semibold">XP Points</h3>
+          </div>
+
+          <div className="p-4">
+            {filteredLeaders.length > 0 ? (
+              filteredLeaders.map((leader, index) => (
+                <RankingRow
+                  key={index}
+                  name={leader.name}
+                  points={leader.xp}
+                  position={index + 1}
+                  image={leader.avatar}
+                />
+              ))
+            ) : (
+              <div className="text-center py-8 text-gray-500">No users found</div>
+            )}
+          </div>
+        </div>
+
+
+      </div>
     </div>
   );
 }

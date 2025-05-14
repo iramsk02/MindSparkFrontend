@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import LoadingScreen from "./Loading";
 import Home from "../icons/Home";
-import { Menu, X } from "lucide-react"; // lucide-react for icons
+import { Menu, X,ListChecks,Book,Award } from "lucide-react"; // lucide-react for icons
 
 export default function InstructorProfile() {
   const [instructor, setInstructor] = useState(null);
@@ -128,44 +128,118 @@ async function getInstructorsCourses() {
       <>
           {/* Navbar */}
         
-    <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
-      <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-        {/* Logo Section */}
-        <div className="flex items-center gap-2">
-          <Logo navigateto={"/InstructorDashboard"} />
-          <span className="font-bold text-xl">MindSpark</span>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-6 text-gray-300 text-md">
-          <a href="/InstructorDashboard" className="hover:text-white transition"><Home /></a>
-          <a href="/Createquiz" className="hover:text-white transition">Create Quiz</a>
-          <a href="/Createcourse" className="hover:text-white transition">Create Course</a>
-          <a onClick={logoutUser} className="hover:text-white transition">logout</a>          {/* <a href="/Signin" className="hover:text-white transition">Sign In</a> */}
-          <div className="">
-            {role === "student" ? <a href="/StudentProfile"><img className=" bg-amber-300 w-[42px] h-[42px] rounded-[260px] border-amber-50 border-1" src={avatar} alt="DP" /></a> : <a href="/InstructorProfile"><img className=" bg-amber-300 w-[42px] h-[42px] rounded-[260px] border-amber-50 border-1" src={avatar} alt="DP" /></a>}
-
+         <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
+        <div className="flex justify-between items-center px-4 py-3 max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 cursor-pointer">
+            <Logo navigateto={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} />
+            <span className="font-bold text-xl">MindSpark</span>
+          </div>
+          
+          <div className="hidden md:flex gap-6 items-center text-gray-300 text-md">
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+              className="hover:text-white transition flex items-center gap-1">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            
+            {role === "student" ? (
+              <>
+                <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
+                  <ListChecks size={18} />
+                  <span>Quiz</span>
+                </a>
+                <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-1">
+                  <Award size={18} />
+                  <span>LeaderBoard</span>
+                </a>
+                <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> */}
+                  <span>LogOut</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
+                  <ListChecks size={18} />
+                  <span>Create Quiz</span>
+                </a>
+                <a href="/Createcourse" className="hover:text-white transition flex items-center gap-1">
+                  <Book size={18} />
+                  <span>Create Course</span>
+                </a>
+                 <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> */}
+                  <span>LogOut</span>
+                </a>
+              </>
+            )}
+            
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+              <img
+                className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
+                src={avatar || "https://via.placeholder.com/42"}
+                alt="Profile"
+              />
+            </a>
+          </div>
+          
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Links */}
-      {isOpen && (
-        <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
-          <a href="/InstructorDashboard" className="hover:text-white transition">Home</a>
-          <a href="/Createquiz" className="hover:text-white transition">Create Quiz</a>
-          <a href="/Createcourse" className="hover:text-white transition">Create Course</a>
-          <a onClick={logoutUser} className="hover:text-white transition">logout</a>
-        </div>
-      )}
-    </nav>
+        
+        {isOpen && (
+          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+              className="hover:text-white transition py-2 flex items-center gap-2">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            
+            {role === "student" ? (
+              <>
+                <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
+              <ListChecks size={18} />
+              <span>Quiz</span>
+            </a>
+                <a href="/LeaderBoard" className="hover:text-white transition py-2 flex items-center gap-2">
+                  <Award size={18} />
+                  <span>LeaderBoard</span>
+                </a>
+                 <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> */}
+                  <span>LogOut</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
+              <ListChecks size={18} />
+              <span>Quiz</span>
+            </a>
+                <a href="/Createcourse" className="hover:text-white transition py-2 flex items-center gap-2">
+                  <Award size={18} />
+                  <span>Create Course</span>
+                </a>
+                 <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> */}
+                  <span>LogOut</span>
+                </a>
+              </>
+            )}
+            
+            {/* <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"} 
+              className="hover:text-white transition py-2 flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full overflow-hidden">
+                <img src={avatar || "https://via.placeholder.com/42"} alt="Profile" className="w-full h-full object-cover" />
+              </div>
+              <span>Profile</span>
+            </a> */}
+          </div>
+        )}
+      </nav>
 
       <div className="flex justify-center items-center mt-24 px-4 py-6 bg-gray-100 min-h-[90vh]">
         <div className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-xl">

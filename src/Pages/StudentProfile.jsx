@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import LoadingScreen from "./Loading";
-import { Menu, X } from "lucide-react";
+// import { Menu, X } from "lucide-react";
 import Home from "../icons/Home";
 import Navbar from "../Components/Navbar";
 import Logo from "../icons/Logo";
+import { Menu, X, MessageCircle, Calendar, BookOpen, Send, Mic, Languages, ThumbsUp, 
+  PlayCircle, Download, Share2, Bookmark, HelpCircle, ChevronLeft, MoreHorizontal ,Book,
+  Award,
+  Zap,
+  ListChecks} from "lucide-react";
 
 export default function StudentProfile() {
   const [student, setStudent] = useState(null);
@@ -106,7 +111,7 @@ export default function StudentProfile() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
+    <div className="mt-0">     {/* <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
         <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
             <Logo navigateto={"/StudentDashboard"} />
@@ -142,9 +147,110 @@ export default function StudentProfile() {
             <Link onClick={logoutUser} className="hover:text-white transition">logout</Link>
           </div>
         )}
+      </nav> */}
+        {/* Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
+        <div className="flex justify-between items-center px-4 py-3 max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 cursor-pointer">
+            <Logo navigateto={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} />
+            <span className="font-bold text-xl">MindSpark</span>
+          </div>
+          
+          <div className="hidden md:flex gap-6 items-center text-gray-300 text-md">
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+              className="hover:text-white transition flex items-center gap-1">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            
+            {role === "student" ? (
+              <>
+                <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
+                  <ListChecks size={18} />
+                  <span>Quiz</span>
+                </a>
+                <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-1">
+                  <Award size={18} />
+                  <span>LeaderBoard</span>
+                </a>
+                <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> */}
+                  <span>LogOut</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
+                  <ListChecks size={18} />
+                  <span>Create Quiz</span>
+                </a>
+                <a href="/Createcourse" className="hover:text-white transition flex items-center gap-1">
+                  <Award size={18} />
+                  <span>Create Course</span>
+                </a>
+              </>
+            )}
+            
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+              <img
+                className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
+                src={avatar || "https://via.placeholder.com/42"}
+                alt="Profile"
+              />
+            </a>
+          </div>
+          
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+        
+        {isOpen && (
+          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+              className="hover:text-white transition py-2 flex items-center gap-2">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            
+            {role === "student" ? (
+              <>
+                <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
+              <ListChecks size={18} />
+              <span>Quiz</span>
+            </a>
+                <a href="/LeaderBoard" className="hover:text-white transition py-2 flex items-center gap-2">
+                  <Award size={18} />
+                  <span>LeaderBoard</span>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
+              <ListChecks size={18} />
+              <span>Quiz</span>
+            </a>
+                <a href="/Createcourse" className="hover:text-white transition py-2 flex items-center gap-2">
+                  <Award size={18} />
+                  <span>Create Course</span>
+                </a>
+              </>
+            )}
+            
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"} 
+              className="hover:text-white transition py-2 flex items-center gap-2">
+              <div className="w-6 h-6 rounded-full overflow-hidden">
+                <img src={avatar || "https://via.placeholder.com/42"} alt="Profile" className="w-full h-full object-cover" />
+              </div>
+              <span>Profile</span>
+            </a>
+          </div>
+        )}
       </nav>
 
-      <div className="flex justify-center items-center mt-24 sm:mt-20 px-4 py-6 bg-gray-100 min-h-[90vh]">
+      <div className="flex justify-center items-center top-0 sm:mt-20 px-4 py-6 bg-gray-100 min-h-[90vh]">
       
         <div className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-xl">
         {/* <VoiceAssistant/> */}
@@ -192,10 +298,14 @@ export default function StudentProfile() {
             <h3 className="text-lg font-semibold text-gray-700 mb-2">Profile Stats</h3>
             <div className="grid grid-cols-2 gap-4 text-center">
               <div className="bg-indigo-100 rounded-xl p-4">
+                <div className="flex justify-center gap-2">
+                <span className="mt-2"><Zap size={18}/></span>
                 <p className="text-xl font-bold text-indigo-600">{student.xp || 0}</p>
+                </div>
                 <p className="text-sm text-gray-600">XP</p>
               </div>
               <div className="bg-yellow-100 rounded-xl p-4">
+                
                 <p className="text-xl font-bold text-yellow-600">{student.badges?.length || 0}</p>
                 <p className="text-sm text-gray-600">Badges</p>
               </div>
@@ -257,78 +367,8 @@ export default function StudentProfile() {
           </div>
         </div>
       </div>
+      </div>
+ 
     </>
   );
 }
-// import React, { useEffect } from 'react';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-
-export function VoiceAssistant ()  {
-  const keywords = [
-    {
-      keyword: 'dashboard',
-      action: () => window.location.href = '/StudentDashboard',
-    },
-    {
-      keyword: 'profile',
-      action: () => window.location.href = '/StudentProfile',
-    },
-    {
-      keyword: 'quiz',
-      action: () => window.location.href = '/Quiz',
-    },
-    {
-      keyword: 'leaderboard',
-      action: () => window.location.href = '/Leaderboard',
-    },
-    {
-      keyword: 'start lesson',
-      action: () => alert('Starting lesson...'),
-    },
-    {
-      keyword: 'submit quiz',
-      action: () => alert('Submitting quiz...'),
-    },
-  ];
-
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
-
-  useEffect(() => {
-    if (!browserSupportsSpeechRecognition) {
-      alert('Browser does not support voice recognition.');
-      return;
-    }
-  }, []);
-
-  useEffect(() => {
-    const lowerTranscript = transcript.toLowerCase();
-
-    keywords.forEach(({ keyword, action }) => {
-      if (lowerTranscript.includes(keyword)) {
-        action();
-        resetTranscript(); // prevent multiple calls
-      }
-    });
-  }, [transcript]);
-
-  return (
-    <div className="p-4 rounded-lg shadow bg-gray-100 max-w-70">
-      <button
-        onClick={() => SpeechRecognition.startListening({ continuous: true })}
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        🎤 Start Voice Assistant
-      </button>
-      <p className="mt-2 text-sm text-gray-600">
-        {listening ? 'Listening...' : 'Click to start listening'}
-      </p>
-      <p className="text-xs mt-1 text-gray-800">Heard: {transcript}</p>
-    </div>
-  );
-};
-

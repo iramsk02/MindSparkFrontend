@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../icons/Logo";
 import Home from "../icons/Home";
 import LoadingScreen from "./Loading";
-import { Menu, X } from "lucide-react"; // lucide-react for icons
+import { Menu, X,ListChecks,Book } from "lucide-react"; // lucide-react for icons
 import toast from "react-hot-toast";
 
 export default function CreateQuiz() {
@@ -172,43 +172,80 @@ export default function CreateQuiz() {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
-        <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
-            <Logo navigateto={"/StudentDashboard"} />
-            <span className="font-bold text-xl">MindSpark</span>
-          </div>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-lg">
+                <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+                    {/* Logo Section */}
+                    <div className="flex items-center gap-2 cursor-pointer">
+                        <Logo navigateto={"/InstructorDashboard"} />
+                        <span className="font-bold text-xl tracking-tight">MindSpark</span>
+                    </div>
 
-          <div className="hidden md:flex gap-6 text-gray-300 text-md">
-            <a href="/InstructorDashboard" className="hover:text-white transition"><Home /></a>
-            {/* <a href="/Createquiz" className="hover:text-white transition">Create Quiz</a> */}
-            <a href="/Createcourse" className="hover:text-white transition">Create Course</a>
-            <div>
-              <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
-                <img
-                  className="bg-amber-300 w-[42px] h-[42px] rounded-full border-amber-50 border-1"
-                  src={avatar}
-                  alt="DP"
-                />
-              </a>
-            </div>
-          </div>
+                    {/* Desktop Links */}
+                    <div className="hidden md:flex items-center gap-6 text-gray-200 text-md">
+                        <a href="/InstructorDashboard" className="flex items-center gap-1 hover:text-white transition font-medium">
+                            <Home size={18} />
+                            <span>Dashboard</span>
+                        </a>
+                       
+                        <a href="/Createcourse" className="flex items-center gap-1 hover:text-white transition font-medium">
+                            <Book size={18} />
+                            <span>Create Course</span>
+                        </a>
+                        <div className="ml-2">
+                            {role === "student" ? (
+                                <a href="/StudentProfile" className="flex items-center">
+                                    <img 
+                                        className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
+                                        src={avatar} 
+                                        alt="Profile"
+                                    />
+                                </a>
+                            ) : (
+                                <a href="/InstructorProfile" className="flex items-center">
+                                    <img 
+                                        className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
+                                        src={avatar} 
+                                        alt="Profile" 
+                                    />
+                                </a>
+                            )}
+                        </div>
+                    </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
+                    {/* Mobile Menu Toggle */}
+                    <div className="md:hidden">
+                        <button 
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="p-1 rounded-md hover:bg-indigo-700 transition"
+                        >
+                            {isOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
+                </div>
 
-        {isOpen && (
-          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
-            <a href="/InstructorDashboard" className="hover:text-white transition">Home</a>
-            <a href="/Createcourse" className="hover:text-white transition">Create Course</a>
-            <a href="/InstructorProfile" className="hover:text-white transition">Profile</a>
-          </div>
-        )}
-      </nav>
+                {/* Mobile Links */}
+                {isOpen && (
+                    <div className="md:hidden px-6 pb-4 pt-2 bg-primary text-gray-200 flex flex-col gap-4 text-md animate-fadeIn">
+                        <a href="/InstructorDashboard" className="flex items-center gap-2 py-2 hover:text-white transition">
+                            <Home size={18} />
+                            <span>Dashboard</span>
+                        </a>
+                       
+                        <a href="/Createcourse" className="flex items-center gap-2 py-2 hover:text-white transition">
+                            <Book size={18} />
+                            <span>Create Course</span>
+                        </a>
+                        <a href="/InstructorProfile" className="flex items-center gap-2 py-2 hover:text-white transition">
+                            <img 
+                                className="w-8 h-8 rounded-full border-2 border-white" 
+                                src={avatar} 
+                                alt="Profile" 
+                            />
+                            <span>Profile</span>
+                        </a>
+                    </div>
+                )}
+            </nav>
 
       {/* Form */}
       <div className="mt-24 px-6 md:px-20 pb-10">
