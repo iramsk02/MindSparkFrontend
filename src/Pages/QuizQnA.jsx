@@ -210,12 +210,14 @@
 //         </>
 //     );
 // }
+
+
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Logo from "../icons/Logo";
 import Home from "../icons/Home";
 import LoadingScreen from "./Loading";
-import { Menu, X, ChevronLeft, ChevronRight, CheckCircle } from "lucide-react"; 
+import { Menu, X, ChevronLeft, ChevronRight, CheckCircle,Award } from "lucide-react"; 
 import toast from "react-hot-toast";
 
 export default function QuizQnA() {
@@ -350,66 +352,74 @@ export default function QuizQnA() {
     return (
         <>
             {/* Navbar */}
-            <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-purple-700 to-indigo-800 text-white shadow-lg">
-                <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-                    {/* Logo Section */}
-                    <div className="flex items-center gap-2">
-                        <Logo navigateto={"/StudentDashboard"} />
-                        <span className="font-bold text-xl">MindSpark</span>
-                    </div>
+              <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
+        <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+          {/* Logo Section */}
+          <div className="flex items-center gap-2 hover:scale-105 transition duration-300 cursor-pointer">
+            <Logo navigateto={"/StudentDashboard"} />
+            <span className="font-bold text-xl">MindSpark</span>
+          </div>
 
-                    {/* Desktop Links */}
-                    <div className="hidden md:flex items-center gap-6 text-gray-200 text-md">
-                        <a href="/StudentDashboard" className="flex items-center gap-1 hover:text-white transition">
-                            <Home size={18} />
-                            <span>Home</span>
-                        </a>
-                        <a href="/LeaderBoard" className="hover:text-white transition">LeaderBoard</a>
-                        <div className="">
-                            {role === "student" ? 
-                                <a href="/StudentProfile">
-                                    <img 
-                                        className="w-10 h-10 rounded-full border-2 border-yellow-300 object-cover hover:border-yellow-400 transition" 
-                                        src={avatar} 
-                                        alt="Profile" 
-                                    />
-                                </a> : 
-                                <a href="/InstructorProfile">
-                                    <img 
-                                        className="w-10 h-10 rounded-full border-2 border-yellow-300 object-cover hover:border-yellow-400 transition" 
-                                        src={avatar} 
-                                        alt="Profile" 
-                                    />
-                                </a>
-                            }
-                        </div>
-                    </div>
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-6 text-gray-300 text-md">
+            <a href="/StudentDashboard" className="flex items-center gap-1 hover:text-white hover: transition duration-300">
+              <Home />
+              <span>Home</span>
+            </a>
+            <a href="/LeaderBoard" className="flex items-center gap-1 hover:text-white hover:transition duration-300">
+              <Award size={20} />
+              <span>LeaderBoard</span>
+            </a>
+              <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+              <img
+                className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
+                src={avatar || "https://via.placeholder.com/42"}
+                alt="Profile"
+              />
+            </a>
+          </div>
 
-                    {/* Mobile Menu Toggle */}
-                    <div className="md:hidden">
-                        <button onClick={() => setIsOpen(!isOpen)} className="text-white hover:text-yellow-300 transition">
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
-                </div>
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
 
-                {/* Mobile Links */}
-                {isOpen && (
-                    <div className="md:hidden px-6 pb-4 bg-purple-800 text-gray-200 flex flex-col gap-4 text-md">
-                        <a href="/StudentDashboard" className="hover:text-white py-2 transition">Home</a>
-                        <a href="/LeaderBoard" className="hover:text-white py-2 transition">LeaderBoard</a>
-                        <a href="/StudentProfile" className="hover:text-white py-2 transition">Profile</a>
-                    </div>
-                )}
-            </nav>
+        {/* Mobile Links */}
+        {isOpen && (
+          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md animate-fadeIn">
+            <a href="/StudentDashboard" className="py-3 flex items-center gap-2 hover:text-white border-b border-blue-700">
+              <Home size={18} />
+              <span>Home</span>
+            </a>
+            <a href="/LeaderBoard" className="py-3 flex items-center gap-2 hover:text-white border-b border-blue-700">
+              <Award size={18} />
+              <span>LeaderBoard</span>
+            </a>
+            <a href="/StudentProfile" className="py-3 flex items-center gap-2 hover:text-white">
+              <img 
+                className="w-6 h-6 rounded-full border border-blue-200" 
+                src={avatar || "https://ui-avatars.com/api/?name=User&background=random"} 
+                alt="Profile" 
+              />
+              <span>Profile</span>
+            </a>
+          </div>
+        )}
+      </nav>
             
             <div className="pt-28 px-5 md:px-20 pb-20 bg-gradient-to-b from-indigo-50 to-purple-50 min-h-screen text-gray-900">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <h1 className="text-2xl md:text-3xl font-bold text-purple-700 flex items-center">
+                    <h1 className="text-2xl md:text-3xl font-bold text-primary flex items-center">
                         <span className="bg-purple-100 p-2 rounded-full mr-3">📚</span> 
                         {quiz.category}
                     </h1>
-                    <div className="bg-gradient-to-r from-yellow-300 to-amber-400 text-gray-900 font-medium rounded-full px-6 py-2 mt-4 md:mt-0 shadow-md">
+                    <div className="0 text-gray-900 font-medium rounded-full px-6 py-2 mt-4 md:mt-0 shadow-md">
                         <span className="mr-1">✨</span> XP Reward: {quiz.xpReward}
                     </div>
                 </div>
@@ -418,7 +428,7 @@ export default function QuizQnA() {
                 <div className="mb-10">
                     <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden shadow-inner">
                         <div
-                            className="h-full bg-gradient-to-r from-purple-500 to-indigo-600 transition-all duration-300"
+                            className="h-full bg-gradient-to-r from-blue-850 to-primary transition-all duration-300"
                             style={{ width: `${progressPercent}%` }}
                         ></div>
                     </div>
@@ -430,10 +440,10 @@ export default function QuizQnA() {
                 {/* Question Card */}
                 <div className="bg-white shadow-lg rounded-2xl p-8 transition-all duration-300 border border-purple-100 hover:shadow-xl mb-8">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-lg md:text-xl font-bold text-purple-800">
+                        <h2 className="text-lg md:text-xl font-bold text-blue-800">
                             Question {currentPage + 1} of {totalPages}
                         </h2>
-                        <div className="text-sm bg-purple-100 text-purple-700 px-3 py-1 rounded-full">
+                        <div className="text-sm bg-purple-100 text-bluee-700 px-3 py-1 rounded-full">
                             {isQuestionAnswered(currentQuestion._id) ? 
                               <span className="flex items-center"><CheckCircle size={16} className="mr-1" /> Answered</span> : 
                               "Not answered yet"}
@@ -475,7 +485,7 @@ export default function QuizQnA() {
                             className={`flex items-center px-4 py-2 rounded-lg ${
                                 currentPage === 0 
                                 ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-                                : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+                                : "bg-indigo-100 text-blue-800 hover:bg-indigo-200"
                             }`}
                         >
                             <ChevronLeft size={18} className="mr-1" /> Previous
@@ -486,7 +496,7 @@ export default function QuizQnA() {
                             className={`flex items-center px-4 py-2 rounded-lg ${
                                 currentPage === totalPages - 1 
                                 ? "bg-gray-200 text-gray-500 cursor-not-allowed" 
-                                : "bg-indigo-100 text-indigo-700 hover:bg-indigo-200"
+                                : "bg-indigo-100 text-blue-800 hover:bg-indigo-200"
                             }`}
                         >
                             Next <ChevronRight size={18} className="ml-1" />
@@ -501,7 +511,7 @@ export default function QuizQnA() {
                                 onClick={() => goToPage(index)}
                                 className={`w-3 h-3 rounded-full transition-all ${
                                     currentPage === index 
-                                    ? "bg-purple-600 w-4 h-4" 
+                                    ? "bg-blue-800 w-4 h-4" 
                                     : isQuestionAnswered(quiz.questions[index]._id)
                                       ? "bg-green-500"
                                       : "bg-gray-300 hover:bg-gray-400"
@@ -513,7 +523,7 @@ export default function QuizQnA() {
 
                     <button
                         onClick={() => setIsSubmitModalOpen(true)}
-                        className="bg-gradient-to-r from-purple-600 to-indigo-700 hover:from-purple-700 hover:to-indigo-800 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition duration-300 flex items-center"
+                        className="bg-gradient-to-r from-blue-800 to-primary hover:from-blue-900 hover:to-blue-800 text-white font-semibold px-8 py-3 rounded-full shadow-lg transition duration-300 flex items-center"
                     >
                         <span>🚀 Submit Quiz</span>
                     </button>
@@ -524,7 +534,7 @@ export default function QuizQnA() {
             {isSubmitModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
                     <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl">
-                        <h3 className="text-xl font-bold text-purple-800 mb-4">Confirm Submission</h3>
+                        <h3 className="text-xl font-bold text-blue-800 mb-4">Confirm Submission</h3>
                         <p className="text-gray-700 mb-6">
                             You've answered {Object.keys(selectedAnswers).length} out of {quiz.questions.length} questions. 
                             {Object.keys(selectedAnswers).length < quiz.questions.length && (
@@ -542,7 +552,7 @@ export default function QuizQnA() {
                             </button>
                             <button 
                                 onClick={handleSubmit}
-                                className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                                className="px-6 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-800"
                             >
                                 Submit
                             </button>
