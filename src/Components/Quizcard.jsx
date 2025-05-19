@@ -11,13 +11,13 @@ export default function QuizCard({ category, xpReward, id }) {
 
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-bold tracking-wide uppercase text-blue-100 flex items-center gap-2">
+        <h3 className="sm:text-xs text-sm font-bold tracking-wide uppercase text-blue-100 flex items-center gap-2">
           <FaBrain className="text-yellow-400" />
           {category}
         </h3>
 
         {/* XP Badge */}
-        <div className="bg-yellow-400 text-blue-900 font-bold text-sm px-3 py-1 rounded-full flex items-center gap-2 shadow-md">
+        <div className="bg-yellow-400 text-blue-900 font-bold text-xs px-3 py-1 rounded-full flex items-center gap-2 shadow-md">
           <FaStar /> {xpReward} XP
         </div>
       </div>

@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar";
 import QuizGrid from "../Components/Quizgrid";
 import Logo from "../icons/Logo";
 import LoadingScreen from "./Loading";
-import { Menu, X, Search, Award, BookOpen } from "lucide-react"; // Added more icons
+import { Menu, X, Search, Award, BookOpen,User } from "lucide-react"; // Added more icons
 import Home from "../icons/Home";
 import toast from "react-hot-toast";
 
@@ -32,16 +32,19 @@ export default function QuizPage() {
 
   // Filter quizzes when search term changes
   useEffect(() => {
-    if (!searchTerm.trim()) {
-      setFilteredQuiz(quiz);
-    } else {
+    // if (!searchTerm.trim()) {
+    //   setFilteredQuiz(quiz);
+    // } else {
       const filtered = quiz.filter(q => 
-        q.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        q.description?.toLowerCase().includes(searchTerm.toLowerCase())
+        q.category?.toLowerCase().includes(searchTerm.toLowerCase()) 
+       
+      
+      
       );
+    
       setFilteredQuiz(filtered);
-    }
-  }, [searchTerm, quiz]);
+    // }
+  }, [searchTerm]);
 
   async function fetchQuiz() {
     try {
@@ -57,7 +60,9 @@ export default function QuizPage() {
 
       const data = await response.json();
       setQuiz(data.Quiz);
-      setFilteredQuiz(data.Quiz);
+      console.log(data.Quiz)
+      // setFilteredQuiz(data.Quiz);
+      // console.log(filteredQuiz.length)
     } catch (error) {
       toast.error("Failed to fetch quizzes.");
       console.error(error);
@@ -112,20 +117,22 @@ export default function QuizPage() {
         {/* Mobile Links */}
         {isOpen && (
           <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md animate-fadeIn">
-            <a href="/StudentDashboard" className="py-3 flex items-center gap-2 hover:text-white border-b border-blue-700">
+            <a href="/StudentDashboard" className="py-3 flex items-center gap-2 hover:text-white  border-blue-700">
               <Home size={18} />
               <span>Home</span>
             </a>
-            <a href="/LeaderBoard" className="py-3 flex items-center gap-2 hover:text-white border-b border-blue-700">
+            <a href="/LeaderBoard" className="py-3 flex items-center gap-2 hover:text-white  border-blue-700">
               <Award size={18} />
               <span>LeaderBoard</span>
             </a>
             <a href="/StudentProfile" className="py-3 flex items-center gap-2 hover:text-white">
-              <img 
+              {/* <img 
                 className="w-6 h-6 rounded-full border border-blue-200" 
                 src={avatar || "https://ui-avatars.com/api/?name=User&background=random"} 
                 alt="Profile" 
-              />
+              /> */}
+              <User size={18}/>
+
               <span>Profile</span>
             </a>
           </div>
@@ -162,7 +169,7 @@ export default function QuizPage() {
       </section>
 
       {/* Quiz Section */}
-      <section className="px-6 sm:px-12 md:px-20 py-12 bg-white min-h-[50vh] rounded-t-3xl shadow-inner -mt-6">
+      <section className="px-6 sm:px-12  md:px-20 py-12 bg-white min-h-[50vh] rounded-t-3xl shadow-inner -mt-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-0 flex items-center">
@@ -173,125 +180,31 @@ export default function QuizPage() {
           </div>
 
           {filteredQuiz.length > 0 ? (
-            <div className="animate-fadeUp">
+            <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
               <QuizGrid quiz={filteredQuiz} />
             </div>
           ) : (
-            <div className="text-center text-gray-500 mt-16 py-20 bg-blue-50 rounded-xl">
-              <div className="inline-block p-4 rounded-full bg-blue-100 mb-4">
+            <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
+              {/* <div className="inline-block p-4 rounded-full bg-blue-100 mb-4">
                 <Search size={48} className="text-blue-500" />
-              </div>
-              <p className="text-xl font-medium">No quizzes found matching "{searchTerm}"</p>
+              </div> */}
+              <div className="animate-fadeUp">
+              <QuizGrid quiz={quiz} />
+            </div>
+              {/* <p className="text-xl font-medium">No quizzes found matching "{searchTerm}"</p>
               <p className="mt-2 text-gray-500">Try using different keywords or browse all available quizzes</p>
               <button 
                 onClick={() => setSearchTerm("")}
                 className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
               >
                 Show All Quizzes
-              </button>
+              </button> */}
             </div>
           )}
         </div>
       </section>
       
-      {/* Footer */}
-      <footer className="bg-primary text-white py-6 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Logo navigateto={"/StudentDashboard"} />
-            <span className="font-bold text-xl">MindSpark</span>
-          </div>
-          <p className="text-gray-300 text-sm">© {new Date().getFullYear()} MindSpark Learning Platform. All rights reserved.</p>
-        </div>
-      </footer>
+      
     </div>
   );
 }
-
-function VoiceAssistantButton() {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full hover:shadow-lg transition duration-300 hover:scale-105"
-      >
-        <span className="animate-pulse">🎤</span>
-        <span>Voice Assistant</span>
-      </button>
-      
-      {isOpen && <VoiceAssistant close={() => setIsOpen(false)} />}
-    </div>
-  );
-}
-
-function VoiceAssistant({ close }) {
-  const [listening, setListening] = useState(false);
-  const [transcript, setTranscript] = useState("");
-  
-  // This is a simplified mock version since we can't fully implement SpeechRecognition here
-  // In a real implementation, this would use the react-speech-recognition library
-  
-  const startListening = () => {
-    setListening(true);
-    setTranscript("Listening...");
-    
-    // Simulate listening for demonstration purposes
-    setTimeout(() => {
-      setTranscript("Going to dashboard");
-      
-      // Simulate navigation after command recognition
-      setTimeout(() => {
-        window.location.href = '/StudentDashboard';
-      }, 1000);
-    }, 2000);
-  };
-  
-  return (
-    <div className="absolute right-0 top-12 z-10 w-64 p-4 bg-white rounded-lg shadow-xl border border-gray-200 animate-fadeIn">
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="font-medium">Voice Commands</h3>
-        <button onClick={close} className="text-gray-500 hover:text-gray-700">
-          <X size={18} />
-        </button>
-      </div>
-      
-      <div className="p-3 bg-gray-50 rounded-lg mb-3">
-        <p className="text-sm text-gray-600 mb-2">Try saying:</p>
-        <ul className="text-xs text-gray-500 space-y-1 ml-4 list-disc">
-          <li>"Go to dashboard"</li>
-          <li>"Show my profile"</li>
-          <li>"Open leaderboard"</li>
-          <li>"Start quiz"</li>
-        </ul>
-      </div>
-      
-      <button
-        onClick={startListening}
-        className={`w-full px-4 py-2 ${listening ? 'bg-red-500' : 'bg-blue-500'} text-white rounded-lg flex items-center justify-center gap-2`}
-      >
-        <span className={listening ? 'animate-pulse' : ''}>🎤</span>
-        <span>{listening ? 'Listening...' : 'Start Listening'}</span>
-      </button>
-      
-      {transcript && (
-        <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-gray-700">
-          {transcript}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Add these styles to your CSS/Tailwind config
-// @keyframes fadeIn {
-//   from { opacity: 0; }
-//   to { opacity: 1; }
-// }
-// @keyframes fadeUp {
-//   from { opacity: 0; transform: translateY(20px); }
-//   to { opacity: 1; transform: translateY(0); }
-// }
-// .animate-fadeIn { animation: fadeIn 0.3s ease-in; }
-// .animate-fadeUp { animation: fadeUp 0.5s ease-out; }

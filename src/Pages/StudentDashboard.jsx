@@ -13,6 +13,7 @@ export default function StudentDashboard() {
   const avatar = localStorage.getItem("avatar");
   const role = localStorage.getItem("role");
   const [courses, setCourses] = useState([]);
+  const [filteredCourses, setfilteredCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [student, setStudent] = useState({});
   const [isOpen, setIsOpen] = useState(false);
@@ -43,6 +44,18 @@ export default function StudentDashboard() {
     setRecentCourses(getMockRecentCourses());
   }, []);
 
+  useEffect(() => {
+    const filtered = courses.filter(q =>
+      q.title?.toLowerCase().includes(searchQuery.toLowerCase()) || q.description?.toLowerCase().includes(searchQuery.toLowerCase())
+
+
+
+    );
+    setfilteredCourses(filtered)
+
+
+  }, [searchQuery])
+
   // Mock function for demo purposes
   const getMockRecentCourses = () => {
     return [
@@ -65,7 +78,7 @@ export default function StudentDashboard() {
 
       const data = await response.json();
       console.log(data);
-      
+
       if (response.ok) {
         setCourses(data);
       } else {
@@ -92,7 +105,7 @@ export default function StudentDashboard() {
   const progressToNextLevel = ((xpPoints % 500) / 500) * 100;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="h-screen bg-gray-50">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
         <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
@@ -132,7 +145,7 @@ export default function StudentDashboard() {
               <Bell size={20} className="cursor-pointer hover:text-white" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
             </div> */}
-             <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
               <img
                 className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
                 src={avatar || "https://via.placeholder.com/42"}
@@ -163,7 +176,7 @@ export default function StudentDashboard() {
               />
               <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
             </div>
-            
+
             {/* <a href="/StudentDashboard" className="hover:text-white transition flex items-center gap-2 py-2">
               <Home size={18} />
               <span>Home</span>
@@ -218,7 +231,7 @@ export default function StudentDashboard() {
               </div>
             </div>
           </div>
-          
+
           {/* Progress bar */}
           <div className="mt-4">
             <div className="flex justify-between text-xs mb-1">
@@ -226,8 +239,8 @@ export default function StudentDashboard() {
               <span>{progressToNextLevel.toFixed(0)}%</span>
             </div>
             <div className="w-full bg-blue-800 rounded-full h-2">
-              <div 
-                className="bg-yellow-400 h-2 rounded-full" 
+              <div
+                className="bg-yellow-400 h-2 rounded-full"
                 style={{ width: `${progressToNextLevel}%` }}
               ></div>
             </div>
@@ -236,7 +249,7 @@ export default function StudentDashboard() {
 
         {/* Dashboard Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
+          {/* <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
             <div className="rounded-full bg-blue-100 p-3 mr-4">
               <Book size={24} className="text-blue-600" />
             </div>
@@ -244,9 +257,9 @@ export default function StudentDashboard() {
               <p className="text-gray-500 text-sm">Courses</p>
               <p className="font-bold text-xl">{completedCourses} / {courses.length}</p>
             </div>
-          </div>
-          
-          <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
+          </div> */}
+
+          {/* <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
             <div className="rounded-full bg-green-100 p-3 mr-4">
               <ListChecks size={24} className="text-green-600" />
             </div>
@@ -254,8 +267,8 @@ export default function StudentDashboard() {
               <p className="text-gray-500 text-sm">Quizzes</p>
               <p className="font-bold text-xl">{completedQuizzes} / {totalQuizzes}</p>
             </div>
-          </div>
-          
+          </div> */}
+
           <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
             <div className="rounded-full bg-purple-100 p-3 mr-4">
               <Activity size={24} className="text-purple-600" />
@@ -265,7 +278,7 @@ export default function StudentDashboard() {
               <p className="font-bold text-xl">{quizAccuracy}%</p>
             </div>
           </div>
-          
+
           <div className="bg-white p-4 rounded-lg shadow-md flex items-center">
             <div className="rounded-full bg-amber-100 p-3 mr-4">
               <Calendar size={24} className="text-amber-600" />
@@ -278,7 +291,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Recent Courses */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <h2 className="text-xl font-bold mb-4">Continue Learning</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {recentCourses.map(course => (
@@ -297,15 +310,17 @@ export default function StudentDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Recommended Videos Section */}
         <section className="mt-10 mb-20">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Recommended Videos</h2>
             <a href="/all-courses" className="text-blue-600 hover:underline text-sm">View All</a>
+            {/* {filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />} */}
           </div>
-          <VideoGrid videos={courses} />
+          {filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />}
+          {/* <VideoGrid videos={courses} /> */}
         </section>
       </div>
     </div>

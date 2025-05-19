@@ -197,7 +197,7 @@ export default function LessonPage() {
             {role === "student" ? (
               <>
                 <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
-                  <Book size={18} />
+                  <ListChecks size={18} />
                   <span>Quiz</span>
                 </a>
                 <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-1">
@@ -208,7 +208,7 @@ export default function LessonPage() {
             ) : (
               <>
                 <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
-                  <Book size={18} />
+                  <ListChecks size={18} />
                   <span>Create Quiz</span>
                 </a>
                 <a href="/Createcourse" className="hover:text-white transition flex items-center gap-1">
@@ -569,7 +569,7 @@ export default function LessonPage() {
             )}
             
             {/* Related Videos */}
-            <div className="bg-white rounded-lg shadow-sm p-4">
+            {/* <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                 <PlayCircle size={18} className="text-blue-600" />
                 Related Lectures
@@ -603,7 +603,7 @@ export default function LessonPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

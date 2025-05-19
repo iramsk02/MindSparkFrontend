@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Menu, X, Home, Book, Plus, Award, Users, Star, ListChecks } from "lucide-react"; // Added more icons
+import { Menu, X, Home, Book, Plus, Award, Users, Star, ListChecks,User } from "lucide-react"; // Added more icons
 import Logo from "../icons/Logo";
 import LoadingScreen from "./Loading";
 import VideoGrid from "../Components/VideoGrid";
@@ -108,19 +108,21 @@ export default function InstructorDashboard() {
                         <div className="ml-2">
                             {role === "student" ? (
                                 <a href="/StudentProfile" className="flex items-center">
-                                    <img 
+                                    <User size={18}/>
+                                    {/* <img 
                                         className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
                                         src={avatar} 
                                         alt="Profile"
-                                    />
+                                    /> */}
                                 </a>
                             ) : (
                                 <a href="/InstructorProfile" className="flex items-center">
-                                    <img 
+                                      <User size={18}/>
+                                    {/* <img 
                                         className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
                                         src={avatar} 
                                         alt="Profile" 
-                                    />
+                                    /> */}
                                 </a>
                             )}
                         </div>
@@ -153,11 +155,12 @@ export default function InstructorDashboard() {
                             <span>Create Lecture</span>
                         </a>
                         <a href="/InstructorProfile" className="flex items-center gap-2 py-2 hover:text-white transition">
-                            <img 
+                            {/* <img 
                                 className="w-8 h-8 rounded-full border-2 border-white" 
                                 src={avatar} 
                                 alt="Profile" 
-                            />
+                            /> */}
+                              <User size={18}/>
                             <span>Profile</span>
                         </a>
                     </div>
@@ -265,11 +268,11 @@ export default function InstructorDashboard() {
             </main>
             
             {/* Footer */}
-            <footer className="bg-gray-100 py-8 border-t border-gray-200">
+            {/* <footer className="bg-gray-100 py-8 border-t border-gray-200">
                 <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
                     <p>© 2025 MindSpark Learning Platform. All rights reserved.</p>
                 </div>
-            </footer>
+            </footer> */}
         </div>
     );
 }

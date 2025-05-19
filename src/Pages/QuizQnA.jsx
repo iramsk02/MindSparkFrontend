@@ -202,7 +202,7 @@ export default function QuizQnA() {
         )}
       </nav>
             
-            <div className="pt-28 px-5 md:px-20 pb-20 bg-gradient-to-b from-indigo-50 to-purple-50 min-h-screen text-gray-900">
+            <div className="pt-28 px-5 md:px-20 pb-20 bg-white min-h-screen text-gray-900">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8">
                     <h1 className="text-2xl md:text-3xl font-bold text-primary flex items-center">
                         <span className="bg-purple-100 p-2 rounded-full mr-3">📚</span> 
@@ -215,9 +215,9 @@ export default function QuizQnA() {
 
                 {/* Progress Bar */}
                 <div className="mb-10">
-                    <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                    <div className="w-full h-4 bg-blue-200 rounded-full overflow-hidden shadow-inner">
                         <div
-                            className="h-full bg-gradient-to-r from-blue-850 to-primary transition-all duration-300"
+                            className="h-full bg-gradient-to-r from-blue-850 to-blue-900 transition-all duration-300"
                             style={{ width: `${progressPercent}%` }}
                         ></div>
                     </div>
@@ -232,7 +232,7 @@ export default function QuizQnA() {
                         <h2 className="text-lg md:text-xl font-bold text-blue-800">
                             Question {currentPage + 1} of {totalPages}
                         </h2>
-                        <div className="text-sm bg-purple-100 text-bluee-700 px-3 py-1 rounded-full">
+                        <div className="text-sm bg-white text-bluee-700 px-3 py-1 rounded-full">
                             {isQuestionAnswered(currentQuestion._id) ? 
                               <span className="flex items-center"><CheckCircle size={16} className="mr-1" /> Answered</span> : 
                               "Not answered yet"}

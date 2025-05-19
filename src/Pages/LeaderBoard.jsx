@@ -39,7 +39,7 @@ const UserCard = ({ image, name, position, points }) => {
   const styles = getPositionStyles();
 
   return (
-   
+
     <div className={`relative bottom-0 flex flex-col  items-center ${styles.containerClass} transition-all duration-300 hover:scale-105`}>
       {/* Position indicator with animation */}
       <div className="absolute -top-4  flex items-center justify-center w-10 h-10 rounded-full shadow-lg border-2 border-white animate-pulse" style={{ animationDuration: '3s' }}>
@@ -91,63 +91,7 @@ const UserCard = ({ image, name, position, points }) => {
   );
 };
 
-// RankingRow component with improved styling
-const RankingRow = ({ image, name, position, points }) => {
-  // Determine badge style based on position
-  const getBadgeStyle = () => {
-    if (position === 1) {
-      return "bg-yellow-400 text-yellow-800";
-    } else if (position === 2) {
-      return "bg-gray-300 text-gray-700";
-    } else if (position === 3) {
-      return "bg-amber-700 text-white";
-    } else {
-      return "bg-gray-100 text-gray-600";
-    }
-  };
 
-  return (
-    <div className="flex items-center justify-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-300 mb-1 group">
-      {/* Position badge */}
-      {/* <div className={`flex items-center justify-between min-w-[36px] h-9 rounded-full ${getBadgeStyle()} font-bold mr-3`}>
-        {position}
-      </div> */}
-
-      {/* User info */}
-      <div className="flex items-center justify-between flex-grow overflow-hidden">
-        <div className="relative">
-          <div>    
-                 <img
-            src={image || "/api/placeholder/46/46"}
-            alt={name}
-            className="w-11 h-11 rounded-full object-cover border-2 border-gray-200 group-hover:border-blue-300 transition-colors duration-300"
-          />
-            {position <= 3 && (
-              <div className="absolute -bottom-1 -right-1 rounded-full bg-white p-0.5 shadow-sm">
-                {position === 1 ?
-                  <Crown size={14} className="text-yellow-500" /> :
-                  position === 2 ?
-                    <Medal size={14} className="text-gray-500" /> :
-                    <Trophy size={14} className="text-amber-700" />
-                }
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="ml-3 font-medium text-gray-800 truncate">{name}</div>
-         <div className="flex items-center">
-        <Zap size={16} className="text-blue-600 mr-1" />
-        <span className="font-bold text-gray-800">{points}</span>
-        <span className="text-xs text-gray-500 ml-1">XP</span>
-      </div>
-      </div>
-
-      {/* XP display with small icon */}
-     
-    </div>
-  );
-};
 
 export default function LeaderBoard() {
   const [leaders, setLeaders] = useState([]);
@@ -221,7 +165,7 @@ export default function LeaderBoard() {
           </div>
 
           {/* Search Bar - Desktop */}
-          <div className="hidden md:flex relative w-1/3">
+          {/* <div className="hidden md:flex relative w-1/3">
             <input
               type="text"
               placeholder="Search users..."
@@ -230,7 +174,7 @@ export default function LeaderBoard() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
-          </div>
+          </div> */}
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6 text-gray-300 text-md">
@@ -242,12 +186,12 @@ export default function LeaderBoard() {
               <ListChecks size={18} />
               <span>Quiz</span>
             </a>
-           
+
             {/* <div className="relative">
               <Bell size={20} className="cursor-pointer hover:text-white" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
             </div> */}
-             <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
               <img
                 className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
                 src={avatar || "https://via.placeholder.com/42"}
@@ -268,7 +212,7 @@ export default function LeaderBoard() {
         {isOpen && (
           <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
             {/* Mobile Search */}
-            <div className="relative mt-3">
+            {/* <div className="relative mt-3">
               <input
                 type="text"
                 placeholder="Search users..."
@@ -277,24 +221,29 @@ export default function LeaderBoard() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
-            </div>
+            </div> */}
 
             <a href="/StudentDashboard" className="hover:text-white transition flex items-center gap-2 py-2">
               <Home size={18} />
               <span>Home</span>
             </a>
-           
-            <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-2 py-2 text-white">
+
+            {/* <a href="/LeaderBoard" className="hover:text-white transition flex items-center gap-2 py-2 text-white">
               <Award size={18} />
               <span>Leaderboard</span>
+            </a> */}
+
+             <a href="/Quiz" className="hover:text-white transition flex items-center gap-2 py-2 text-white">
+              <ListChecks size={18} />
+              <span>Quiz</span>
             </a>
             <a href="/StudentProfile" className="hover:text-white transition flex items-center gap-2 py-2">
               <User size={18} />
               <span>Profile</span>
             </a>
-            <a href="/signout" className="hover:text-white transition flex items-center gap-2 py-2">
+            {/* <a href="/signout" className="hover:text-white transition flex items-center gap-2 py-2">
               <span>Sign Out</span>
-            </a>
+            </a> */}
           </div>
         )}
       </nav>
@@ -427,32 +376,73 @@ export default function LeaderBoard() {
         </div>
 
         {/* Leaderboard List */}
-        <div className="bg-white rounded-xl shadow-md mb-10 ml-40 mr-40  flex flex-col justify-center overflow-hidden">
-          <div className="bg-primary text-white p-4 flex justify-between items-center">
-            <h3 className="font-semibold">Rank</h3>
-            <h3 className="font-semibold">Player</h3>
-            <h3 className="font-semibold">XP Points</h3>
-          </div>
+        <main className="pt-5 max-w-4xl mx-auto px-4">
+    
 
-          <div className="p-4">
-            {filteredLeaders.length > 0 ? (
-              filteredLeaders.map((leader, index) => (
-                <RankingRow
-                  key={index}
-                  name={leader.name}
-                  points={leader.xp}
-                  position={index + 1}
-                  image={leader.avatar}
-                />
-              ))
-            ) : (
-              <div className="text-center py-8 text-gray-500">No users found</div>
-            )}
+          <div className="bg-white p-4 rounded-xl shadow-md">
+            {filteredLeaders.map((leader, index) => (
+              <RankingRow
+                key={index}
+                image={leader.avatar}
+                name={leader.name}
+                position={index + 1}
+                points={leader.points}
+              />
+            ))}
           </div>
-        </div>
+        </main>
+        
 
 
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+const RankingRow = ({ image, name, position, points }) => {
+  const getBadgeStyle = () => {
+    if (position === 1) return "bg-yellow-400 text-yellow-800";
+    else if (position === 2) return "bg-gray-300 text-gray-700";
+    else if (position === 3) return "bg-amber-700 text-white";
+    else return "bg-gray-100 text-gray-600";
+  };
+
+  return (
+    <div className="flex items-center justify-center p-3 rounded-lg hover:bg-blue-50 transition-colors duration-300 mb-1 group">
+      <div className="flex items-center justify-between flex-grow overflow-hidden">
+        <div className="relative">
+          <div>
+            <img
+              src={image || "/api/placeholder/46/46"}
+              alt={name}
+              className="w-11 h-11 rounded-full object-cover border-2 border-gray-200 group-hover:border-blue-300 transition-colors duration-300"
+            />
+            {position <= 3 && (
+              <div className="absolute -bottom-1 -right-1 rounded-full bg-white p-0.5 shadow-sm">
+                {position === 1 ? <Crown size={14} className="text-yellow-500" /> :
+                  position === 2 ? <Medal size={14} className="text-gray-500" /> :
+                    <Trophy size={14} className="text-amber-700" />}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="ml-3 font-medium text-gray-800 truncate">{name}</div>
+        <div className="flex items-center">
+          <Zap size={16} className="text-blue-600 mr-1" />
+          <span className="font-bold text-gray-800">{points}</span>
+          <span className="text-xs text-gray-500 ml-1">XP</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
