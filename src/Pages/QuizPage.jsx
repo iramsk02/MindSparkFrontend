@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar";
 import QuizGrid from "../Components/Quizgrid";
 import Logo from "../icons/Logo";
 import LoadingScreen from "./Loading";
-import { Menu, X, Search, Award, BookOpen,User } from "lucide-react"; // Added more icons
+import { Menu, X, Search, Award, BookOpen, User } from "lucide-react"; // Added more icons
 import Home from "../icons/Home";
 import toast from "react-hot-toast";
 
@@ -23,7 +23,7 @@ export default function QuizPage() {
 
   useEffect(() => {
     fetchQuiz();
-    
+
     // Add fade-in animation after component mounts
     setTimeout(() => {
       setFadeIn(true);
@@ -35,14 +35,14 @@ export default function QuizPage() {
     // if (!searchTerm.trim()) {
     //   setFilteredQuiz(quiz);
     // } else {
-      const filtered = quiz.filter(q => 
-        q.category?.toLowerCase().includes(searchTerm.toLowerCase()) 
-       
-      
-      
-      );
-    
-      setFilteredQuiz(filtered);
+    const filtered = quiz.filter(q =>
+      q.category?.toLowerCase().includes(searchTerm.toLowerCase())
+
+
+
+    );
+
+    setFilteredQuiz(filtered);
     // }
   }, [searchTerm]);
 
@@ -71,7 +71,7 @@ export default function QuizPage() {
     }
   }
 
-  if (loading) return <LoadingScreen />;
+  // if (loading) return <LoadingScreen />;
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 transition-opacity duration-500 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}>
@@ -94,7 +94,7 @@ export default function QuizPage() {
               <Award size={20} />
               <span>LeaderBoard</span>
             </a>
-              <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
               <img
                 className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
                 src={avatar || "https://via.placeholder.com/42"}
@@ -105,7 +105,7 @@ export default function QuizPage() {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden">
-            <button 
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg hover:bg-blue-700 transition"
             >
@@ -131,7 +131,7 @@ export default function QuizPage() {
                 src={avatar || "https://ui-avatars.com/api/?name=User&background=random"} 
                 alt="Profile" 
               /> */}
-              <User size={18}/>
+              <User size={18} />
 
               <span>Profile</span>
             </a>
@@ -151,7 +151,7 @@ export default function QuizPage() {
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto mb-8">
             Sharpen your knowledge, boost your confidence, and earn XP by tackling interactive quizzes across tech topics.
           </p>
-          
+
           {/* Search Bar */}
           <div className="relative max-w-md mx-auto mt-6 group">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -173,38 +173,33 @@ export default function QuizPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-0 flex items-center">
-              <span className="bg-blue-100 p-2 rounded-full mr-3">🔥</span> 
+              <span className="bg-blue-100 p-2 rounded-full mr-3">🔥</span>
               Featured Quizzes
             </h2>
             {/* <VoiceAssistantButton /> */}
           </div>
+          { }
 
-          {filteredQuiz.length > 0 ? (
-            <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
-              <QuizGrid quiz={filteredQuiz} />
-            </div>
-          ) : (
-            <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
-              {/* <div className="inline-block p-4 rounded-full bg-blue-100 mb-4">
-                <Search size={48} className="text-blue-500" />
-              </div> */}
-              <div className="animate-fadeUp">
-              <QuizGrid quiz={quiz} />
-            </div>
-              {/* <p className="text-xl font-medium">No quizzes found matching "{searchTerm}"</p>
-              <p className="mt-2 text-gray-500">Try using different keywords or browse all available quizzes</p>
-              <button 
-                onClick={() => setSearchTerm("")}
-                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-              >
-                Show All Quizzes
-              </button> */}
-            </div>
-          )}
+          {
+
+            loading ? <LoadingScreen /> : filteredQuiz.length > 0 ? (
+              <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
+                <QuizGrid quiz={filteredQuiz} />
+              </div>
+            ) : (
+
+              <div className="text-center text-gray-500 mt-16 p-20 bg-blue-50 rounded-xl">
+
+
+                <QuizGrid quiz={quiz} />
+              </div>
+
+
+            )}
         </div>
       </section>
-      
-      
+
+
     </div>
   );
 }

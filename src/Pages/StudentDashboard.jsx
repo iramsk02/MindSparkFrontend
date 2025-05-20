@@ -92,7 +92,7 @@ export default function StudentDashboard() {
     }
   }
 
-  if (loading) return <LoadingScreen />;
+  // if (loading) return <LoadingScreen />;
 
   // Calculate random (mock) stats for demo purposes
   const completedCourses = 3;
@@ -319,7 +319,7 @@ export default function StudentDashboard() {
             <a href="/all-courses" className="text-blue-600 hover:underline text-sm">View All</a>
             {/* {filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />} */}
           </div>
-          {filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />}
+          {loading?  <LoadingScreen />:filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />}
           {/* <VideoGrid videos={courses} /> */}
         </section>
       </div>

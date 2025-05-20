@@ -151,7 +151,7 @@ export default function LeaderBoard() {
     leader.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) return <LoadingScreen />;
+  // if (loading) return <LoadingScreen />;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -164,17 +164,7 @@ export default function LeaderBoard() {
             <span className="font-bold text-xl">MindSpark</span>
           </div>
 
-          {/* Search Bar - Desktop */}
-          {/* <div className="hidden md:flex relative w-1/3">
-            <input
-              type="text"
-              placeholder="Search users..."
-              className="w-full py-2 px-4 pl-10 rounded-full bg-primary-dark text-white placeholder-gray-300 border border-gray-700 focus:outline-none focus:border-blue-400"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
-          </div> */}
+         
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-6 text-gray-300 text-md">

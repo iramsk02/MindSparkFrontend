@@ -114,43 +114,8 @@ export default function StudentProfile() {
   return (
     <>
 
-      {/* <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
-        <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
-            <Logo navigateto={"/StudentDashboard"} />
-            <span className="font-bold text-xl">MindSpark</span>
-          </div>
 
-          <div className="hidden md:flex gap-6 text-gray-300 text-md">
-            <Link to="/StudentDashboard" className="hover:text-white transition"><Home /></Link>
-            <Link to="/Quiz" className="hover:text-white transition">Quiz</Link>
-            <Link to="/LeaderBoard" className="hover:text-white transition">LeaderBoard</Link>
-            <Link onClick={logoutUser} className="hover:text-white transition">logout</Link>
-            <Link to={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
-              <img
-                className="bg-amber-300 w-[42px] h-[42px] rounded-[260px] border-amber-50 border-1"
-                src={avatar}
-                alt="DP"
-              />
-            </Link>
-          </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {isOpen && (
-          <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
-            <Link to="/StudentDashboard" className="hover:text-white transition">Home</Link>
-            <Link to="/Quiz" className="hover:text-white transition">Quiz</Link>
-            <Link to="/LeaderBoard" className="hover:text-white transition">LeaderBoard</Link>
-            <Link onClick={logoutUser} className="hover:text-white transition">logout</Link>
-          </div>
-        )}
-      </nav> */}
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
         <div className="flex justify-between items-center px-4 py-3 max-w-7xl mx-auto">
@@ -176,10 +141,10 @@ export default function StudentProfile() {
                   <Award size={18} />
                   <span>LeaderBoard</span>
                 </a>
-                <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
-                  {/* <Award size={18} /> */}
+                {/* <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                  {/* <Award size={18} /> 
                   <span>LogOut</span>
-                </a>
+                </a> */}
               </>
             ) : (
               <>
@@ -195,9 +160,9 @@ export default function StudentProfile() {
             )}
 
             <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
-                  {/* <Award size={18} /> */}
-                  <span>LogOut</span>
-              
+              {/* <Award size={18} /> */}
+              <span>LogOut</span>
+
             </a>
           </div>
 
@@ -226,7 +191,7 @@ export default function StudentProfile() {
                   <Award size={18} />
                   <span>LeaderBoard</span>
                 </a>
-                 <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
                   {/* <Award size={18} /> */}
                   <span>LogOut</span>
                 </a>
@@ -241,7 +206,7 @@ export default function StudentProfile() {
                   <Award size={18} />
                   <span>Create Course</span>
                 </a>
-                 <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
+                <a onClick={logoutUser} className="hover:text-white transition cursor-pointer flex items-center gap-1">
                   {/* <Award size={18} /> */}
                   <span>LogOut</span>
                 </a>

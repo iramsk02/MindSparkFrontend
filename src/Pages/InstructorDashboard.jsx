@@ -78,7 +78,7 @@ export default function InstructorDashboard() {
         }
     }
 
-    if (loading) return <LoadingScreen />;
+    // if (loading) return <LoadingScreen />;
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -108,21 +108,21 @@ export default function InstructorDashboard() {
                         <div className="ml-2">
                             {role === "student" ? (
                                 <a href="/StudentProfile" className="flex items-center">
-                                    <User size={18}/>
-                                    {/* <img 
+                                    {/* <User size={18}/> */}
+                                    <img 
                                         className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
                                         src={avatar} 
                                         alt="Profile"
-                                    /> */}
+                                    />
                                 </a>
                             ) : (
                                 <a href="/InstructorProfile" className="flex items-center">
-                                      <User size={18}/>
-                                    {/* <img 
+                                      {/* <User size={18}/> */}
+                                    <img 
                                         className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm transition transform hover:scale-105" 
                                         src={avatar} 
                                         alt="Profile" 
-                                    /> */}
+                                    />
                                 </a>
                             )}
                         </div>
