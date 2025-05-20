@@ -316,7 +316,7 @@ export default function StudentDashboard() {
         <section className="mt-10 mb-20">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Recommended Videos</h2>
-            <a href="/all-courses" className="text-blue-600 hover:underline text-sm">View All</a>
+           {} <a href="" className="text-blue-600 hover:underline text-sm">View All</a>
             {/* {filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />} */}
           </div>
           {loading?  <LoadingScreen />:filteredCourses.length>0?<VideoGrid videos={filteredCourses} />:<VideoGrid videos={courses} />}

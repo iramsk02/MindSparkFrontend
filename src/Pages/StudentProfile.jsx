@@ -103,13 +103,13 @@ export default function StudentProfile() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="text-center  text-gray-500">
-        <LoadingScreen />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="text-center  text-gray-500">
+  //       <LoadingScreen />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -225,8 +225,7 @@ export default function StudentProfile() {
       </nav>
 
       <div className="flex justify-center items-center top-0  px-4 py-6 bg-gray-100 h-screen">
-
-        <div className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-xl">
+        {loading?<LoadingScreen/>:<div className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-xl">
           {/* <VoiceAssistant/> */}
           <div className="flex flex-col items-center text-center">
             <img
@@ -339,7 +338,7 @@ export default function StudentProfile() {
               </button>
             )}
           </div>
-        </div>
+        </div>}
       </div>
 
 

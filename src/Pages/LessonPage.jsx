@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Menu, X, MessageCircle, Calendar, BookOpen, Send, Mic, Languages, ThumbsUp, 
-  PlayCircle, Download, Share2, Bookmark, HelpCircle, ChevronLeft, MoreHorizontal ,Book,
+import {
+  Menu, X, MessageCircle, Calendar, BookOpen, Send, Mic, Languages, ThumbsUp,
+  PlayCircle, Download, Share2, Bookmark, HelpCircle, ChevronLeft, MoreHorizontal, Book,
   Award,
-  ListChecks} from "lucide-react";
+  ListChecks
+} from "lucide-react";
 import Logo from "../icons/Logo";
 import Home from "../icons/Home";
 import LoadingScreen from "./Loading";
@@ -88,6 +90,7 @@ export default function LessonPage() {
     return () => {
       socketRef.current?.close();
     };
+     setInput("");
   }, [courseId]);
 
   const sendMessage = async (query) => {
@@ -145,7 +148,7 @@ export default function LessonPage() {
         },
         body: JSON.stringify({ courseId, userId }),
       });
-      
+
       toast.success("Lesson completed! Progress saved.");
     } catch (err) {
       console.error("Progress tracking error:", err);
@@ -172,7 +175,7 @@ export default function LessonPage() {
   const formatTime = (timeString) => {
     if (!timeString) return '';
     const time = new Date(timeString);
-    return time instanceof Date && !isNaN(time) 
+    return time instanceof Date && !isNaN(time)
       ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       : timeString;
   };
@@ -186,14 +189,14 @@ export default function LessonPage() {
             <Logo navigateto={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} />
             <span className="font-bold text-xl">MindSpark</span>
           </div>
-          
+
           <div className="hidden md:flex gap-6 items-center text-gray-300 text-md">
-            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"}
               className="hover:text-white transition flex items-center gap-1">
               <Home size={18} />
               <span>Home</span>
             </a>
-            
+
             {role === "student" ? (
               <>
                 <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
@@ -217,7 +220,7 @@ export default function LessonPage() {
                 </a>
               </>
             )}
-            
+
             <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}>
               <img
                 className="w-9 h-9 rounded-full border-2 border-blue-400 object-cover"
@@ -226,28 +229,28 @@ export default function LessonPage() {
               />
             </a>
           </div>
-          
+
           <div className="md:hidden">
             <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
-        
+
         {isOpen && (
           <div className="md:hidden px-6 pb-4 bg-primary text-gray-300 flex flex-col gap-4 text-md">
-            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"} 
+            <a href={role === "student" ? "/StudentDashboard" : "/InstructorDashboard"}
               className="hover:text-white transition py-2 flex items-center gap-2">
               <Home size={18} />
               <span>Home</span>
             </a>
-            
+
             {role === "student" ? (
               <>
                 <a href="/Quiz" className="hover:text-white transition flex items-center gap-1">
-              <ListChecks size={18} />
-              <span>Quiz</span>
-            </a>
+                  <ListChecks size={18} />
+                  <span>Quiz</span>
+                </a>
                 <a href="/LeaderBoard" className="hover:text-white transition py-2 flex items-center gap-2">
                   <Calendar size={18} />
                   <span>LeaderBoard</span>
@@ -256,17 +259,17 @@ export default function LessonPage() {
             ) : (
               <>
                 <a href="/Createquiz" className="hover:text-white transition flex items-center gap-1">
-              <ListChecks size={18} />
-              <span>Quiz</span>
-            </a>
+                  <ListChecks size={18} />
+                  <span>Quiz</span>
+                </a>
                 <a href="/Createcourse" className="hover:text-white transition py-2 flex items-center gap-2">
                   <Calendar size={18} />
                   <span>Create Lecture</span>
                 </a>
               </>
             )}
-            
-            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"} 
+
+            <a href={role === "student" ? "/StudentProfile" : "/InstructorProfile"}
               className="hover:text-white transition py-2 flex items-center gap-2">
               <div className="w-6 h-6 rounded-full overflow-hidden">
                 <img src={avatar || "https://via.placeholder.com/42"} alt="Profile" className="w-full h-full object-cover" />
@@ -307,7 +310,7 @@ export default function LessonPage() {
                 <source src={getVideoUrl()} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-              
+
               {/* Floating Language Selector */}
               <div className="absolute top-4 right-4 z-10 bg-black bg-opacity-70 rounded-lg p-2">
                 <div className="flex items-center gap-2">
@@ -334,7 +337,7 @@ export default function LessonPage() {
                     Published on {new Date().toLocaleDateString()}
                   </div>
                 </div>
-                
+
                 {/* <div className="flex gap-4">
                   <button 
                     onClick={() => setLiked(!liked)} 
@@ -357,16 +360,16 @@ export default function LessonPage() {
                   </button>
                 </div> */}
               </div>
-              
+
               {/* Divider */}
               <div className="border-t my-4"></div>
-              
+
               {/* Description */}
               <div className="mt-4">
                 <h3 className="text-lg font-semibold mb-2">Description</h3>
                 <p className="text-gray-700 whitespace-pre-line">{state.video.description}</p>
               </div>
-              
+
               {/* Transcript Toggle */}
               {/* <div className="mt-6">
                 <button 
@@ -393,26 +396,24 @@ export default function LessonPage() {
           <div className={`${fullScreenVideo ? 'hidden' : 'lg:w-1/3'} lg:flex flex-col gap-4`}>
             {/* Tab Navigation */}
             <div className="bg-white rounded-lg shadow-sm p-2 flex">
-              <button 
+              <button
                 onClick={() => setShowDiscussion(true)}
-                className={`flex-1 py-2 px-4 rounded-md flex items-center justify-center gap-2 transition ${
-                  showDiscussion ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`flex-1 py-2 px-4 rounded-md flex items-center justify-center gap-2 transition ${showDiscussion ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'
+                  }`}
               >
                 <MessageCircle size={18} />
                 <span>Discussion</span>
               </button>
-              <button 
+              <button
                 onClick={() => setShowDiscussion(false)}
-                className={`flex-1 py-2 px-4 rounded-md flex items-center justify-center gap-2 transition ${
-                  !showDiscussion ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                className={`flex-1 py-2 px-4 rounded-md flex items-center justify-center gap-2 transition ${!showDiscussion ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'
+                  }`}
               >
                 <HelpCircle size={18} />
                 <span>AI Assistant</span>
               </button>
             </div>
-          
+
             {/* Discussion Panel */}
             {showDiscussion && (
               <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-96">
@@ -422,8 +423,8 @@ export default function LessonPage() {
                     Class Discussion
                   </h3>
                 </div>
-                
-                <div 
+
+                <div
                   ref={chatContainerRef}
                   className="flex-grow overflow-y-auto p-4 space-y-4"
                 >
@@ -434,15 +435,14 @@ export default function LessonPage() {
                     </div>
                   ) : (
                     messages.map((msg, idx) => (
-                      <div 
-                        key={idx} 
+                      <div
+                        key={idx}
                         className={`flex gap-2 ${msg.user === userId ? 'justify-end' : 'justify-start'}`}
                       >
-                        <div className={`max-w-3/4 rounded-lg p-3 ${
-                          msg.user === userId 
-                            ? 'bg-blue-600 text-white rounded-br-none' 
+                        <div className={`max-w-3/4 rounded-lg p-3 ${msg.user === userId
+                            ? 'bg-blue-600 text-white rounded-br-none'
                             : 'bg-gray-100 text-gray-800 rounded-bl-none'
-                        }`}>
+                          }`}>
                           <div className="flex items-center gap-2 mb-1">
                             <span className={`font-semibold text-sm ${msg.user === userId ? 'text-blue-100' : 'text-gray-600'}`}>
                               {msg.username || 'Anonymous'}
@@ -457,7 +457,7 @@ export default function LessonPage() {
                     ))
                   )}
                 </div>
-                
+
                 <div className="p-3 border-t">
                   <div className="relative">
                     <input
@@ -478,7 +478,7 @@ export default function LessonPage() {
                 </div>
               </div>
             )}
-          
+
             {/* AI Assistant Panel */}
             {!showDiscussion && (
               <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col h-96">
@@ -488,8 +488,8 @@ export default function LessonPage() {
                     AI Learning Assistant
                   </h3>
                 </div>
-                
-                <div 
+
+                <div
                   ref={answerContainerRef}
                   className="flex-grow overflow-y-auto p-4 space-y-4"
                 >
@@ -504,11 +504,10 @@ export default function LessonPage() {
                   ) : (
                     answers.map((answer, idx) => (
                       <div key={idx} className={`${idx % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-full rounded-lg p-3 ${
-                          answer.username !== "BOT" 
-                            ? 'bg-blue-600 text-white ml-auto' 
+                        <div className={`max-w-full rounded-lg p-3 ${answer.username !== "BOT"
+                            ? 'bg-blue-600 text-white ml-auto'
                             : 'bg-emerald-50 text-gray-800 border border-emerald-100'
-                        }`}>
+                          }`}>
                           {answer.username !== "BOT" && (
                             <div className="mb-1 text-sm font-medium text-blue-100">
                               You asked:
@@ -522,7 +521,7 @@ export default function LessonPage() {
                       </div>
                     ))
                   )}
-                  
+
                   {loading && (
                     <div className="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
                       <div className="flex items-center gap-2">
@@ -534,7 +533,7 @@ export default function LessonPage() {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="p-3 border-t">
                   <div className="relative">
                     <input
@@ -555,9 +554,8 @@ export default function LessonPage() {
                       <button
                         onClick={() => !loading && question.trim() && sendQuestion()}
                         disabled={loading || !question.trim()}
-                        className={`bg-emerald-600 text-white rounded-full p-1 ${
-                          loading || !question.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-emerald-700'
-                        }`}
+                        className={`bg-emerald-600 text-white rounded-full p-1 ${loading || !question.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-emerald-700'
+                          }`}
                         aria-label="Ask question"
                       >
                         <Send size={18} />
@@ -567,7 +565,7 @@ export default function LessonPage() {
                 </div>
               </div>
             )}
-            
+
             {/* Related Videos */}
             {/* <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">

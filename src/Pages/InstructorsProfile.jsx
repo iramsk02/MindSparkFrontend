@@ -241,6 +241,7 @@ export default function InstructorProfile() {
         </nav>
 
         <div className="flex justify-center items-center mt-5 px-4 py-6 bg-gray-100 h-screen">
+          {loading}
           <div className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-xl">
             <div className="flex flex-col items-center text-center">
               <img
