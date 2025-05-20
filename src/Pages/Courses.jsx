@@ -37,7 +37,7 @@ export default function Courses() {
     }
   }
 
-  if (loading) return <LoadingScreen />;
+  // if (loading) return <LoadingScreen />;
 
   return (
     <>

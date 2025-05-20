@@ -45,7 +45,7 @@ export default function Instructor() {
     }
   }
 
-  if (isLoading) return <LoadingScreen />;
+  // if (isLoading) return <LoadingScreen />;
 
   return (
     <>
