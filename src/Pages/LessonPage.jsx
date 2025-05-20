@@ -464,6 +464,7 @@ export default function LessonPage() {
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                      
                       className="w-full border rounded-full py-2 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Type your message..."
                     />
@@ -472,7 +473,7 @@ export default function LessonPage() {
                       className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800"
                       aria-label="Send message"
                     >
-                      <Send size={20} />
+                      <Send size={20} onClick={(e) => e.key === "Enter" && sendMessage()} />
                     </button>
                   </div>
                 </div>
