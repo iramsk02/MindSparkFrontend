@@ -65,7 +65,7 @@ export default function QuizCard({ category, xpReward, id }) {
       <div className="border-t border-blue-400 opacity-20"></div>
 
       {/* Call to Action */}
-      <div className="flex justify-end">
+      <div className="flex justify-center">
         <button
           onClick={() => navigate(`/TakeQuiz/${id}`)}
           className="bg-yellow-400 text-blue-900 font-semibold text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full hover:bg-yellow-300 transition duration-300 shadow-sm"
