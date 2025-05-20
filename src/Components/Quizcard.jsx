@@ -54,10 +54,12 @@ export default function QuizCard({ category, xpReward, id }) {
         </h3>
 
         {/* XP Badge */}
-        <div className="bg-yellow-400 text-blue-900 font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full flex items-center gap-1 sm:gap-2 shadow-md">
+      
+      </div>
+      
+        <div className="bg-yellow-400 text-blue-900 font-bold text-[10px] sm:text-xs px-2 sm:px-3 py-1 rounded-full flex items-center gap-1 sm:gap-2 shadow-md ">
           <FaStar className="text-[12px] sm:text-sm" /> {xpReward} XP
         </div>
-      </div>
 
       {/* Divider */}
       <div className="border-t border-blue-400 opacity-20"></div>
