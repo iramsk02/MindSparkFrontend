@@ -333,9 +333,9 @@ export default function LessonPage() {
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-2xl font-bold">{state.video.title}</h1>
-                  <div className="text-sm text-gray-500 mt-1">
+                  {/* <div className="text-sm text-gray-500 mt-1">
                     Published on {new Date().toLocaleDateString()}
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* <div className="flex gap-4">
