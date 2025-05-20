@@ -90,7 +90,7 @@ export default function LessonPage() {
     return () => {
       socketRef.current?.close();
     };
-     setInput("");
+   
   }, [courseId]);
 
   const sendMessage = async (query) => {
@@ -473,7 +473,7 @@ export default function LessonPage() {
                       className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 hover:text-blue-800"
                       aria-label="Send message"
                     >
-                      <Send size={20} onClick={(e) => e.key === "Enter" && sendMessage()} />
+                      <Send size={20}/>
                     </button>
                   </div>
                 </div>
