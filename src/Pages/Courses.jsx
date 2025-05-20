@@ -125,7 +125,7 @@ export default function Courses() {
             <div className="flex -space-x-2">
               {[1, 2].map((i) => (
                 <div key={i} className={`w-8 h-8 rounded-full border-2 border-blue-950 bg-blue-${i*100 + 300}`}>
-                  <img className={`w-8 h-8 rounded-full border-2 border-blue-950 bg-blue-${i*100 + 300}`} src="src\assets\pexels-photo-17.jpeg" alt="" />
+                  <img className={`w-8 h-8 rounded-full border-2 border-blue-950 bg-blue-${i*100 + 300}`} src="assets\pexels-photo-17.jpeg" alt="" />
                 </div>
               ))}
             </div>

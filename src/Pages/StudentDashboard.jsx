@@ -193,9 +193,9 @@ export default function StudentDashboard() {
               <User size={18} />
               <span>Profile</span>
             </a>
-            <a href="/signout" className="hover:text-white transition flex items-center gap-2 py-2">
+            {/* <a href="/signout" className="hover:text-white transition flex items-center gap-2 py-2">
               <span>Sign Out</span>
-            </a>
+            </a> */}
           </div>
         )}
       </nav>
