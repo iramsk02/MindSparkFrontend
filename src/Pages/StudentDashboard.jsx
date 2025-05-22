@@ -105,7 +105,7 @@ export default function StudentDashboard() {
   const progressToNextLevel = ((xpPoints % 500) / 500) * 100;
 
   return (
-    <div className="h-screen bg-gray-50">
+    <div className="h-full min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-md">
         <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">

@@ -81,7 +81,7 @@ export default function InstructorDashboard() {
     // if (loading) return <LoadingScreen />;
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen ">
             {/* Navbar */}
             <nav className="fixed top-0 left-0 w-full z-50 bg-primary text-white shadow-lg">
                 <div className="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
