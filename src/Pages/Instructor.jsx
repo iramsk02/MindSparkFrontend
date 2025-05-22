@@ -30,8 +30,8 @@ export default function Instructor() {
 
   async function getEducators() {
     try {
-      const res = await fetch(`http://64.227.171.122:5000/api/users/geteducators`, {
-      // const res = await fetch(`https://mindspark-backend.onrender.com/api/users/geteducators`, {
+      // const res = await fetch(`http://64.227.171.122:5000/api/users/geteducators`, {
+      const res = await fetch(`https://mindspark-backend.onrender.com/api/users/geteducators`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
