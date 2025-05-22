@@ -23,7 +23,8 @@ export default function Courses() {
 
   async function getAllCourses() {
     try {
-      const response = await fetch(`https://mindspark-backend.onrender.com/api/courses/Allcourses`);
+      // const response = await fetch(`https://mindspark-backend.onrender.com/api/courses/Allcourses`);
+      const response = await fetch(`http://64.227.171.122:5000/api/courses/Allcourses`);
       const data = await response.json();
       if (response.ok) {
         setCourses(data);

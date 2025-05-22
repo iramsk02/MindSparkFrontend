@@ -334,7 +334,7 @@ export default function LessonPage() {
                 <div>
                   <h1 className="text-2xl font-bold">{state.video.title}</h1>
                   <div className="text-sm text-gray-500 mt-1">
-                    Published on {state.video.createdAt.slice(0, 10)}
+                    Published on {state.video.createdAt.slice(0,10)}
                   </div>
                 </div>
 

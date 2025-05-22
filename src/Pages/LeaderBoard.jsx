@@ -123,6 +123,7 @@ export default function LeaderBoard() {
           headers: { Authorization: token },
         });
         const data = await res.json();
+        console.log(data)
         setLeaders(data.leaderboard);
 
         if (data.leaderboard.length > 0) {
@@ -377,6 +378,7 @@ export default function LeaderBoard() {
                 name={leader.name}
                 position={index + 1}
                 points={leader.points}
+                xp={leader.xp}
               />
             ))}
           </div>
@@ -397,7 +399,7 @@ export default function LeaderBoard() {
 
 
 
-const RankingRow = ({ image, name, position, points }) => {
+const RankingRow = ({ image, name, position, points,xp }) => {
   const getBadgeStyle = () => {
     if (position === 1) return "bg-yellow-400 text-yellow-800";
     else if (position === 2) return "bg-gray-300 text-gray-700";
@@ -429,7 +431,7 @@ const RankingRow = ({ image, name, position, points }) => {
         <div className="flex items-center">
           <Zap size={16} className="text-blue-600 mr-1" />
           <span className="font-bold text-gray-800">{points}</span>
-          <span className="text-xs text-gray-500 ml-1">XP</span>
+          <span className="text-xs text-gray-500 ml-1">{xp}XP</span>
         </div>
       </div>
     </div>

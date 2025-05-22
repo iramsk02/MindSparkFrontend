@@ -63,8 +63,8 @@ export default function CreateCourse() {
         };
 
         try {
-            const response = await fetch('https://mindspark-backend.onrender.com/api/uploads/files', {
-            // const response = await fetch(`http://localhost:5000/api/uploads/files`, {
+            // const response = await fetch('https://mindspark-backend.onrender.com/api/uploads/files', {
+            const response = await fetch(`http://64.227.171.122:5000/api/uploads/files`, {
                 
                 method: 'POST',
                 headers: {
